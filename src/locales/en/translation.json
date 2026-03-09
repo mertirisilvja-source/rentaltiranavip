@@ -1,0 +1,131 @@
+{
+  "nav": {
+    "rezervo": "Reserve",
+    "koleksioni": "Car Collection",
+    "kontakt": "Contact",
+    "rrethNesh": "About Us",
+    "languageLabel": "Language:"
+  },
+
+  "home": {
+    "title": "Reserve your car",
+    "subtitle": "at Rental Tirana VIP",
+    "ctaScroll": "Learn more"
+  },
+  "collections": {
+    "title": "Car Collection",
+    "subtitle": "Choose your car — premium, comfortable, and ready for the road.",
+    "searchLabel": "Search car",
+    "searchPlaceholder": "e.g. G63, Huracan, RS6...",
+    "pricePerDay": "Price/day",
+    "day": "day",
+    "available": "Available",
+    "notAvailable": "Not available",
+    "view": "VIEW",
+    "hint": "Click “View” to see photos.",
+    "close": "Close",
+    "photoTitle": "Photo {{n}}",
+    "emptyState": "No cars found for “{{query}}”."
+  },
+  "specs": {
+    "fuel": "Fuel",
+    "gearbox": "Transmission",
+    "seats": "Seats"
+  },
+  "carSpecs": {
+    "fuel": {
+      "petrol": "Petrol",
+      "diesel": "Diesel"
+    },
+    "gearbox": {
+      "automatic": "Automatic",
+      "manual": "Manual"
+    }
+  },
+  "reservation": {
+    "pickupLocation": "Pick-up location",
+    "dropoffLocation": "Drop-off location",
+    "pickupDateTime": "Pick-up date & time",
+    "dropoffDateTime": "Drop-off date & time",
+    "removeDropoff": "Remove drop-off location",
+    "remove": "Remove",
+    "locations": {
+      "office": "Rental Tirana VIP Office, Tirana",
+      "airport": "Tirana International Airport (Nënë Tereza)"
+    },
+    "noteDifferentTime": "If the drop-off time is not the same as the pick-up time, an extra fee applies.",
+    "continue": "Continue booking",
+    "viewCollection": "View all car collections",
+    "mobileTitle": "Book a car",
+    "mobileDropoff": "Drop-off",
+    "pickupDate": "Pick-up date",
+    "pickupTime": "Pick-up time",
+    "dropoffDate": "Drop-off date",
+    "dropoffTime": "Drop-off time"
+  },
+  "contact": {
+    "titleStart": "Contact",
+    "titleHighlight": "Us",
+    "subtitle": "Contact us for bookings, questions, or special requests. We're here for you.",
+
+    "phoneLabel": "Phone",
+    "phoneHint": "Tap the number to call",
+
+    "igHint": "Open the profile on Instagram",
+
+    "addressLabel": "Address",
+    "addressValue": "Tirana, Albania — Rental Tirana VIP",
+    "mapsHint": "Open the location in Google Maps",
+
+    "whatsappQuestion": "Prefer WhatsApp?",
+    "whatsappButton": "Contact us on WhatsApp",
+    "whatsappHint": "Faster reply",
+
+    "responseHours": "Response hours: every day • 09:00–22:00"
+  },
+  "about": {
+    "titleStart": "About",
+    "titleHighlight": "Rental Tirana VIP",
+
+    "p1": "Rental Tirana VIP offers luxury and premium cars for clients who seek comfort, elegance, and high-level service in Tirana and beyond.",
+    "p2": "Our goal is a simple booking experience, a well-maintained fleet, and fast, safe, and professional service.",
+
+    "stats": {
+      "support": "Support",
+      "premiumService": "Premium Service",
+      "transparency": "Transparency",
+      "luxuryFleet": "Luxury Fleet"
+    },
+
+    "why": {
+      "title1": "Inspected Vehicles",
+      "desc1": "Each car is inspected before every handover to ensure maximum standards.",
+
+      "title2": "Flexible Delivery",
+      "desc2": "Delivery at the office or airport, and other locations when needed.",
+
+      "title3": "Transparent Pricing",
+      "desc3": "Clear prices with no hidden costs. If the drop-off time changes, an extra fee applies according to policy."
+    },
+
+    "cta": {
+      "title": "Ready to book?",
+      "subtitle": "View our car collection and choose the perfect model for you.",
+      "button": "View collection"
+    }
+  },
+  "footer": {
+    "description": "Luxury cars and premium service for an unforgettable experience.",
+    "navigation": "Navigation",
+    "contact": "Contact",
+    "location": "Tirana, Albania",
+    "rights": "All rights reserved.",
+
+    "links": {
+      "reserve": "Reserve",
+      "collection": "Car Collection",
+      "about": "About Us",
+      "contact": "Contact Us"
+    }
+  }
+}

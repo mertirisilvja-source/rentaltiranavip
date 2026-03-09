@@ -1,0 +1,135 @@
+{
+  "nav": {
+    "rezervo": "Prenota",
+    "koleksioni": "Collezione Auto",
+    "kontakt": "Contatti",
+    "rrethNesh": "Chi siamo",
+    "languageLabel": "Lingua:"
+  },
+
+  "home": {
+    "title": "Prenota la tua auto",
+    "subtitle": "con Rental Tirana VIP",
+    "ctaScroll": "Scopri di più"
+  },
+  "collections": {
+    "title": "Collezione Auto",
+    "subtitle": "Scegli la tua auto — premium, comoda e pronta per la strada.",
+    "searchLabel": "Cerca auto",
+    "searchPlaceholder": "es. G63, Huracan, RS6...",
+    "pricePerDay": "Prezzo/giorno",
+    "day": "giorno",
+    "available": "Disponibile",
+    "notAvailable": "Non disponibile",
+    "view": "VEDI",
+    "hint": "Clicca “Vedi” per vedere le foto.",
+    "close": "Chiudi",
+    "photoTitle": "Foto {{n}}",
+    "emptyState": "Nessuna auto trovata per “{{query}}”."
+  },
+  "specs": {
+    "fuel": "Carburante",
+    "gearbox": "Cambio",
+    "seats": "Posti"
+  },
+  "carSpecs": {
+    "fuel": {
+      "petrol": "Benzina",
+      "diesel": "Diesel"
+    },
+    "gearbox": {
+      "automatic": "Automatico",
+      "manual": "Manuale"
+    }
+  },
+  "reservation": {
+    "pickupLocation": "Luogo di ritiro",
+    "dropoffLocation": "Luogo di riconsegna",
+    "pickupDateTime": "Data e ora di ritiro",
+    "dropoffDateTime": "Data e ora di riconsegna",
+    "removeDropoff": "Rimuovi luogo di riconsegna",
+    "remove": "Rimuovi",
+
+    "locations": {
+      "office": "Ufficio Rental Tirana VIP, Tirana",
+      "airport": "Aeroporto Internazionale di Tirana (Nënë Tereza)"
+    },
+
+    "noteDifferentTime": "Se l'orario di riconsegna non coincide con quello di ritiro, verrà applicato un costo aggiuntivo.",
+    "continue": "Continua la prenotazione",
+    "viewCollection": "Visualizza tutte le collezioni di auto",
+
+    "mobileTitle": "Prenota un'auto",
+    "mobileDropoff": "Riconsegna",
+
+    "pickupDate": "Data di ritiro",
+    "pickupTime": "Ora di ritiro",
+    "dropoffDate": "Data di riconsegna",
+    "dropoffTime": "Ora di riconsegna"
+  },
+  "contact": {
+    "titleStart": "Contatta",
+    "titleHighlight": "Noi",
+    "subtitle": "Contattaci per prenotazioni, domande o richieste speciali. Siamo a tua disposizione.",
+
+    "phoneLabel": "Telefono",
+    "phoneHint": "Tocca il numero per chiamare",
+
+    "igHint": "Apri il profilo su Instagram",
+
+    "addressLabel": "Indirizzo",
+    "addressValue": "Tirana, Albania — Rental Tirana VIP",
+    "mapsHint": "Apri la posizione su Google Maps",
+
+    "whatsappQuestion": "Preferisci WhatsApp?",
+    "whatsappButton": "Contattaci su WhatsApp",
+    "whatsappHint": "Risposta più veloce",
+
+    "responseHours": "Orari di risposta: tutti i giorni • 09:00–22:00"
+  },
+  "about": {
+    "titleStart": "Su",
+    "titleHighlight": "Rental Tirana VIP",
+
+    "p1": "Rental Tirana VIP offre auto di lusso e premium per clienti che cercano comfort, eleganza e un servizio di alto livello a Tirana e oltre.",
+    "p2": "Il nostro obiettivo è un’esperienza di prenotazione semplice, una flotta ben mantenuta e un servizio rapido, sicuro e professionale.",
+
+    "stats": {
+      "support": "Assistenza",
+      "premiumService": "Servizio Premium",
+      "transparency": "Trasparenza",
+      "luxuryFleet": "Flotta di Lusso"
+    },
+
+    "why": {
+      "title1": "Auto Controllate",
+      "desc1": "Ogni auto viene controllata prima di ogni consegna per garantire standard massimi.",
+
+      "title2": "Consegna Flessibile",
+      "desc2": "Consegna in ufficio o in aeroporto, e altre località quando necessario.",
+
+      "title3": "Prezzi Trasparenti",
+      "desc3": "Prezzi chiari senza costi nascosti. In caso di cambio dell’orario di riconsegna, si applica un costo extra secondo le regole."
+    },
+
+    "cta": {
+      "title": "Pronta a prenotare?",
+      "subtitle": "Guarda la collezione di auto e scegli il modello perfetto per te.",
+      "button": "Vedi collezione"
+    }
+  },
+  "footer": {
+    "description": "Auto di lusso e servizio premium per un’esperienza indimenticabile.",
+    "navigation": "Navigazione",
+    "contact": "Contatto",
+    "location": "Tirana, Albania",
+    "rights": "Tutti i diritti riservati.",
+
+    "links": {
+      "reserve": "Prenota",
+      "collection": "Collezione Auto",
+      "about": "Chi Siamo",
+      "contact": "Contattaci"
+    }
+  }
+}

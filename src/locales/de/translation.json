@@ -1,0 +1,135 @@
+{
+  "nav": {
+    "rezervo": "Reservieren",
+    "koleksioni": "Fahrzeugkollektion",
+    "kontakt": "Kontakt",
+    "rrethNesh": "Über uns",
+    "languageLabel": "Sprache:"
+  },
+
+  "home": {
+    "title": "Reserviere dein Auto",
+    "subtitle": "bei Rental Tirana VIP",
+    "ctaScroll": "Mehr sehen"
+  },
+  "collections": {
+    "title": "Fahrzeugkollektion",
+    "subtitle": "Wähle dein Auto – premium, komfortabel und bereit für die Straße.",
+    "searchLabel": "Auto suchen",
+    "searchPlaceholder": "z.B. G63, Huracan, RS6...",
+    "pricePerDay": "Preis/Tag",
+    "day": "Tag",
+    "available": "Verfügbar",
+    "notAvailable": "Nicht verfügbar",
+    "view": "ANSEHEN",
+    "hint": "Klicke auf „Ansehen“, um Fotos zu sehen.",
+    "close": "Schließen",
+    "photoTitle": "Foto {{n}}",
+    "emptyState": "Keine Fahrzeuge gefunden für „{{query}}“."
+  },
+  "specs": {
+    "fuel": "Kraftstoff",
+    "gearbox": "Getriebe",
+    "seats": "Sitze"
+  },
+  "carSpecs": {
+    "fuel": {
+      "petrol": "Benzin",
+      "diesel": "Diesel"
+    },
+    "gearbox": {
+      "automatic": "Automatik",
+      "manual": "Manuell"
+    }
+  },
+  "reservation": {
+    "pickupLocation": "Abholort",
+    "dropoffLocation": "Rückgabeort",
+    "pickupDateTime": "Abholdatum & Uhrzeit",
+    "dropoffDateTime": "Rückgabedatum & Uhrzeit",
+    "removeDropoff": "Rückgabeort entfernen",
+    "remove": "Entfernen",
+
+    "locations": {
+      "office": "Rental Tirana VIP Büro, Tirana",
+      "airport": "Flughafen Tirana (Nënë Tereza)"
+    },
+
+    "noteDifferentTime": "Wenn die Rückgabezeit nicht mit der Abholzeit übereinstimmt, fällt eine zusätzliche Gebühr an.",
+    "continue": "Reservierung fortsetzen",
+    "viewCollection": "Alle Fahrzeugkollektionen ansehen",
+
+    "mobileTitle": "Auto reservieren",
+    "mobileDropoff": "Rückgabe",
+
+    "pickupDate": "Abholdatum",
+    "pickupTime": "Abholzeit",
+    "dropoffDate": "Rückgabedatum",
+    "dropoffTime": "Rückgabezeit"
+  },
+  "contact": {
+    "titleStart": "Kontakt",
+    "titleHighlight": "Aufnehmen",
+    "subtitle": "Kontaktieren Sie uns für Reservierungen, Fragen oder spezielle Wünsche. Wir sind für Sie da.",
+
+    "phoneLabel": "Telefon",
+    "phoneHint": "Tippen Sie auf die Nummer, um anzurufen",
+
+    "igHint": "Profil auf Instagram öffnen",
+
+    "addressLabel": "Adresse",
+    "addressValue": "Tirana, Albanien — Rental Tirana VIP",
+    "mapsHint": "Standort in Google Maps öffnen",
+
+    "whatsappQuestion": "Bevorzugen Sie WhatsApp?",
+    "whatsappButton": "Kontakt per WhatsApp",
+    "whatsappHint": "Schnellere Antwort",
+
+    "responseHours": "Antwortzeiten: täglich • 09:00–22:00"
+  },
+  "about": {
+    "titleStart": "Über",
+    "titleHighlight": "Rental Tirana VIP",
+
+    "p1": "Rental Tirana VIP bietet Luxus- und Premiumfahrzeuge für Kunden, die Komfort, Eleganz und Service auf höchstem Niveau in Tirana und darüber hinaus suchen.",
+    "p2": "Unser Ziel ist ein unkompliziertes Buchungserlebnis, eine gepflegte Flotte sowie schneller, sicherer und professioneller Service.",
+
+    "stats": {
+      "support": "Support",
+      "premiumService": "Premium-Service",
+      "transparency": "Transparenz",
+      "luxuryFleet": "Luxusflotte"
+    },
+
+    "why": {
+      "title1": "Geprüfte Fahrzeuge",
+      "desc1": "Jedes Fahrzeug wird vor jeder Übergabe geprüft, um höchste Standards zu gewährleisten.",
+
+      "title2": "Flexible Zustellung",
+      "desc2": "Zustellung im Büro oder am Flughafen – bei Bedarf auch an anderen Orten.",
+
+      "title3": "Transparente Preise",
+      "desc3": "Klare Preise ohne versteckte Kosten. Bei Änderung der Rückgabezeit wird gemäß Richtlinien eine Zusatzgebühr berechnet."
+    },
+
+    "cta": {
+      "title": "Bereit zu buchen?",
+      "subtitle": "Sehen Sie sich unsere Fahrzeugkollektion an und wählen Sie das perfekte Modell für Sie.",
+      "button": "Kollektion ansehen"
+    }
+  },
+  "footer": {
+    "description": "Luxusfahrzeuge und Premium-Service für ein unvergessliches Erlebnis.",
+    "navigation": "Navigation",
+    "contact": "Kontakt",
+    "location": "Tirana, Albanien",
+    "rights": "Alle Rechte vorbehalten.",
+
+    "links": {
+      "reserve": "Reservieren",
+      "collection": "Fahrzeugkollektion",
+      "about": "Über uns",
+      "contact": "Kontakt"
+    }
+  }
+}

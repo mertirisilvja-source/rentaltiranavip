@@ -1,0 +1,131 @@
+{
+  "nav": {
+    "rezervo": "Rezervo",
+    "koleksioni": "Koleksioni i makinave",
+    "kontakt": "Na Kontakto",
+    "rrethNesh": "Rreth Nesh",
+    "languageLabel": "Gjuha:"
+  },
+
+  "home": {
+    "title": "Rezervoni makinën tuaj",
+    "subtitle": "në Rental Tirana VIP",
+    "ctaScroll": "Shiko më shumë"
+  },
+  "collections": {
+    "title": "Koleksioni i makinave",
+    "subtitle": "Zgjidh makinën tënde — premium, komode dhe gati për rrugë.",
+    "searchLabel": "Kërko makinë",
+    "searchPlaceholder": "p.sh. G63, Huracan, RS6...",
+    "pricePerDay": "Çmimi/ditor",
+    "day": "ditë",
+    "available": "E lirë",
+    "notAvailable": "E zënë",
+    "view": "SHIKO",
+    "hint": "Kliko “Shiko” për të parë fotot.",
+    "close": "Mbyll",
+    "photoTitle": "Foto {{n}}",
+    "emptyState": "Nuk u gjet asnjë makinë për “{{query}}”."
+  },
+  "specs": {
+    "fuel": "Karburanti",
+    "gearbox": "Transmisioni",
+    "seats": "Ulëse"
+  },
+  "carSpecs": {
+    "fuel": {
+      "petrol": "Benzinë",
+      "diesel": "Naftë"
+    },
+    "gearbox": {
+      "automatic": "Automatik",
+      "manual": "Manual"
+    }
+  },
+  "reservation": {
+    "pickupLocation": "Lokacioni i pranimit",
+    "dropoffLocation": "Lokacioni i dorëzimit",
+    "pickupDateTime": "Data dhe ora e pranimit",
+    "dropoffDateTime": "Data dhe ora e dorëzimit",
+    "removeDropoff": "Hiq lokacionin e dorëzimit",
+    "remove": "Hiq",
+    "locations": {
+      "office": "Zyra e Rental Tirana VIP, Tiranë",
+      "airport": "Aeroporti Nënë Tereza, Tiranë"
+    },
+    "noteDifferentTime": "Nëse ora e dorëzimit nuk është e njëjtë me të marrjes, atëherë kryhet një pagesë ekstra.",
+    "continue": "Vazhdo rezervimin",
+    "viewCollection": "Shiko të gjithë koleksionin e makinave",
+    "mobileTitle": "Rezervo një makinë",
+    "mobileDropoff": "Dorëzim",
+    "pickupDate": "Data e marrjes",
+    "pickupTime": "Ora e marrjes",
+    "dropoffDate": "Data e dorëzimit",
+    "dropoffTime": "Ora e dorëzimit"
+  },
+  "contact": {
+    "titleStart": "Na",
+    "titleHighlight": "Kontakto",
+    "subtitle": "Na kontaktoni për rezervime, pyetje apo kërkesa speciale. Ne jemi në dispozicionin tuaj.",
+
+    "phoneLabel": "Telefon",
+    "phoneHint": "Kliko numrin për të telefonuar",
+
+    "igHint": "Hap profilin në Instagram",
+
+    "addressLabel": "Adresa",
+    "addressValue": "Tiranë, Shqipëri — Rental Tirana VIP",
+    "mapsHint": "Hap lokacionin në Google Maps",
+
+    "whatsappQuestion": "Preferon WhatsApp?",
+    "whatsappButton": "Na kontakto në WhatsApp",
+    "whatsappHint": "Përgjigje më e shpejtë",
+
+    "responseHours": "Orari i përgjigjes: çdo ditë • 09:00–22:00"
+  },
+  "about": {
+    "titleStart": "Rreth",
+    "titleHighlight": "Rental Tirana VIP",
+
+    "p1": "Rental Tirana Vip ofron makina luksoze dhe premium për klientët që kërkojnë rehati, elegancë dhe shërbim të nivelit të lartë në Tiranë dhe më gjerë.",
+    "p2": "Qëllimi ynë është një eksperiencë e thjeshtë rezervimi, flotë e mirëmbajtur dhe shërbim i shpejtë, i sigurt dhe profesional.",
+
+    "stats": {
+      "support": "Mbështetje",
+      "premiumService": "Shërbim Premium",
+      "transparency": "Transparencë",
+      "luxuryFleet": "Flotë Luksoze"
+    },
+
+    "why": {
+      "title1": "Makina të Kontrolluara",
+      "desc1": "Çdo makinë kontrollohet para çdo dorëzimi për standard maksimal.",
+
+      "title2": "Dorëzim Fleksibël",
+      "desc2": "Dorëzim në zyrë ose aeroport, sipas nevojës edhe lokacione të tjera.",
+
+      "title3": "Pagesa Transparente",
+      "desc3": "Çmime të qarta pa kosto të fshehura. Për ndryshim ore dorëzimi, zbatohet tarifë ekstra sipas rregullave."
+    },
+
+    "cta": {
+      "title": "Gati për të rezervuar?",
+      "subtitle": "Shiko koleksionin e makinave dhe zgjidh modelin perfekt për ty.",
+      "button": "Shiko koleksionin"
+    }
+  },
+  "footer": {
+    "description": "Makina luksoze dhe shërbim premium për një eksperiencë të paharrueshme.",
+    "navigation": "Navigimi",
+    "contact": "Kontakt",
+    "location": "Tiranë, Shqipëri",
+    "rights": "Të gjitha të drejtat e rezervuara.",
+
+    "links": {
+      "reserve": "Rezervo",
+      "collection": "Koleksioni i Makinave",
+      "about": "Rreth Nesh",
+      "contact": "Na Kontakto"
+    }
+  }
+}
