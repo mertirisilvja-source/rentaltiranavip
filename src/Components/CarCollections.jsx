@@ -7,10 +7,8 @@ export default function CarCollections({ carsOverride }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-
   const [query, setQuery] = useState("");
 
-  // if passed from /cars page (filtered), use that list — otherwise use all cars
   const list = carsOverride ?? carsData;
 
   const getMainImage = (car) => car.images?.[0];
@@ -31,7 +29,7 @@ export default function CarCollections({ carsOverride }) {
   };
 
   return (
-    <section id="cars" className="w-full pt-32 pb-14">
+    <section id="cars" className="w-full pb-14">
       <div className="mx-auto w-full max-w-7xl px-4">
         {/* header */}
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -72,7 +70,7 @@ export default function CarCollections({ carsOverride }) {
                   loading="lazy"
                 />
 
-                {/* badge (optional: keep if your data has car.available) */}
+                {/* badge */}
                 {typeof car.available === "boolean" && (
                   <div
                     className={`absolute right-4 top-4 rounded-md border px-3 py-1 text-xs tracking-widest ${

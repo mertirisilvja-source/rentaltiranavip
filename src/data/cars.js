@@ -1,8 +1,8 @@
-import claA from "../assets/cars/cla-anash.jpg";
-import claP from "../assets/cars/cla-para.jpeg";
-import claM from "../assets/cars/cla-mbrapa.jpg";
-import claB from "../assets/cars/cla-brenda.JPG";
-import claS from "../assets/cars/cla-sendiljet.JPG";
+import clsA from "../assets/cars/cls-anash.JPEG";
+import clsP from "../assets/cars/cls-para.jpeg";
+import clsM from "../assets/cars/cls-mbrapa.jpeg";
+import clsMa from "../assets/cars/cls-m1.JPEG";
+import clsPa from "../assets/cars/cls-p1.JPEG";
 
 import ferrariP from "../assets/cars/ferrari-para.JPG";
 import ferrariM from "../assets/cars/ferrari-mbrapa.jpg";
@@ -79,16 +79,16 @@ import urusVB from "../assets/cars/urusV-brenda.JPG";
 
 export const cars = [
   {
-    id: "cla-45s-amg",
+    id: "cls-63s-amg",
     brand: "Mercedes-Benz",
-    model: "Cla 45s AMG 4MATIC",
-    year: 2016,
+    model: "CLS 63s AMG 4MATIC",
+    year: 2017,
     fuelKey: "carSpecs.fuel.petrol",
     gearboxKey: "carSpecs.gearbox.automatic",
     seats: 5,
-    pricePerDay: 150,
+    pricePerDay: 250,
     available: true,
-    images: [claP, claA, claM, claB, claS],
+    images: [clsP, clsA, clsM, clsMa, clsPa],
   },
   {
     id: "gle-coupe",
@@ -145,7 +145,7 @@ export const cars = [
     year: 2024,
     fuelKey: "carSpecs.fuel.petrol",
     gearboxKey: "carSpecs.gearbox.automatic",
-    seats: 2,
+    seats: 4,
     pricePerDay: 500,
     available: true,
     images: [m4C, m4Mb, m4M, m4B],

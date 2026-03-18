@@ -37,9 +37,7 @@ export default function ReservationBar() {
 
   const label = "text-xs font-semibold text-white/90 mb-1";
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
+  const goToCars = () => {
     const finalDropoff = hasDropoffLocation ? dropoffLocation : pickupLocation;
 
     const params = new URLSearchParams({
@@ -52,6 +50,11 @@ export default function ReservationBar() {
     });
 
     navigate(`/cars?${params.toString()}`);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    goToCars();
   };
 
   return (
@@ -101,22 +104,7 @@ export default function ReservationBar() {
 
                   <button
                     type="button"
-                    onClick={() => {
-                      const finalDropoff = hasDropoffLocation
-                        ? dropoffLocation
-                        : pickupLocation;
-
-                      const params = new URLSearchParams({
-                        pickupLocation,
-                        dropoffLocation: finalDropoff,
-                        pickupDate,
-                        pickupTime,
-                        dropoffDate,
-                        dropoffTime,
-                      });
-
-                      navigate(`/cars?${params.toString()}`);
-                    }}
+                    onClick={() => setHasDropoffLocation(false)}
                     className="text-white/70 hover:text-white text-xs font-semibold"
                     aria-label={t("reservation.removeDropoff")}
                     title={t("reservation.remove")}
@@ -230,7 +218,7 @@ export default function ReservationBar() {
                 type="button"
                 className="h-11 w-full rounded-sm border border-white/30 text-white font-semibold
                    hover:bg-white/10 transition"
-                onClick={() => window.location.assign("/cars")}
+                onClick={goToCars}
               >
                 {t("reservation.viewCollection")}
               </button>
@@ -345,7 +333,7 @@ export default function ReservationBar() {
             type="button"
             className="h-11 w-full rounded-sm border border-white/30 text-white font-semibold
                        hover:bg-white/10 transition"
-            onClick={() => window.location.assign("/cars")}
+            onClick={goToCars}
           >
             {t("reservation.viewCollection")}
           </button>
