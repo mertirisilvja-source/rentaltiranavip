@@ -249,8 +249,8 @@ export default function ReservationCheckoutPage() {
 
     try {
       // Build start/end datetimes
-      const startDateUtc = new Date(`${finalPickupDate}T${finalPickupTime || "00:00"}`).toISOString();
-      const endDateUtc = new Date(`${finalDropoffDate}T${finalDropoffTime || "23:59"}`).toISOString();
+      const startDateUtc = `${finalPickupDate}T00:00:00Z`;
+      const endDateUtc = `${finalDropoffDate}T00:00:00Z`;
 
       // Create reservation in the backend (checks availability)
       const reservation = await createReservation({

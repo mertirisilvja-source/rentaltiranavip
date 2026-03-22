@@ -129,6 +129,28 @@ export async function updateReservationStatus(id, status, token) {
   return res.json();
 }
 
+export async function updateReservationDates(id, startDateUtc, endDateUtc, token) {
+  const res = await fetch(buildUrl(`/api/Reservations/${id}/dates`), {
+    method: "PATCH",
+    headers: authHeaders(token),
+    body: JSON.stringify({ startDateUtc, endDateUtc }),
+  });
+  check401(res);
+  if (!res.ok) throw new Error("Dates update failed");
+  return res.json();
+}
+
+export async function updateReservationNotes(id, notes, token) {
+  const res = await fetch(buildUrl(`/api/Reservations/${id}/notes`), {
+    method: "PATCH",
+    headers: authHeaders(token),
+    body: JSON.stringify({ notes }),
+  });
+  check401(res);
+  if (!res.ok) throw new Error("Notes update failed");
+  return res.json();
+}
+
 export async function createReservation(reservation) {
   const res = await fetch(buildUrl("/api/Reservations"), {
     method: "POST",

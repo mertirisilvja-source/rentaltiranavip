@@ -9,6 +9,8 @@ import {
   deleteCarImage,
   fetchReservations,
   updateReservationStatus,
+  updateReservationDates,
+  updateReservationNotes,
   createReservation,
   fetchReservationDocuments,
   getDocumentDownloadUrl,
@@ -517,109 +519,279 @@ function getStatusName(status) {
   return "Pending";
 }
 
-function ReservationCard({ reservation: r, statusName, statusColors, hasDocuments, onConfirm, onCancel, token }) {
+function ReservationCard({ reservation: r, statusName, statusColors, hasDocuments, onConfirm, onCancel, token, onNotesUpdated, cars }) {
   const [docs, setDocs] = useState(null);
   const [loadingDocs, setLoadingDocs] = useState(false);
-  const [showDocs, setShowDocs] = useState(false);
+  const [notes, setNotes] = useState(r.notes || "");
+  const [savingNotes, setSavingNotes] = useState(false);
+  const [notesDirty, setNotesDirty] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [editStart, setEditStart] = useState("");
+  const [editEnd, setEditEnd] = useState("");
+  const [savingDates, setSavingDates] = useState(false);
 
-  const toggleDocs = async () => {
-    if (showDocs) { setShowDocs(false); return; }
-    if (docs === null) {
-      setLoadingDocs(true);
-      try {
-        const data = await fetchReservationDocuments(r.id, token);
-        setDocs(data);
-      } catch { setDocs([]); }
-      finally { setLoadingDocs(false); }
-    }
-    setShowDocs(true);
+  const toInputDate = (dateStr) => {
+    const s = typeof dateStr === "string" && !dateStr.endsWith("Z") ? dateStr + "Z" : dateStr;
+    const d = new Date(s);
+    return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")}`;
   };
 
-  const docLabel = (type) =>
-    type === "id_document" ? "ID / Passport" : type === "driver_license" ? "Driver's License" : type;
+  const openEdit = () => {
+    setEditStart(toInputDate(r.startDateUtc));
+    setEditEnd(toInputDate(r.endDateUtc));
+    setEditing(true);
+  };
+
+  const saveEdit = async () => {
+    setSavingDates(true);
+    try {
+      await updateReservationDates(
+        r.id,
+        `${editStart}T00:00:00Z`,
+        `${editEnd}T00:00:00Z`,
+        token,
+      );
+      setEditing(false);
+      if (onNotesUpdated) onNotesUpdated();
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setSavingDates(false);
+    }
+  };
+
+  // Auto-load docs on mount
+  useEffect(() => {
+    if (!hasDocuments) return;
+    setLoadingDocs(true);
+    fetchReservationDocuments(r.id, token)
+      .then((data) => setDocs(data))
+      .catch(() => setDocs([]))
+      .finally(() => setLoadingDocs(false));
+  }, [r.id, token, hasDocuments]);
+
+  const openDoc = (docId) => {
+    fetch(getDocumentDownloadUrl(docId), {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.blob())
+      .then((blob) => window.open(URL.createObjectURL(blob), "_blank"));
+  };
+
+  const startDate = new Date(r.startDateUtc.endsWith("Z") ? r.startDateUtc : r.startDateUtc + "Z");
+  const endDate = new Date(r.endDateUtc.endsWith("Z") ? r.endDateUtc : r.endDateUtc + "Z");
+  const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+  const carObj = (cars || []).find((c) => c.id === r.carId);
+  const carName = carObj ? `${carObj.brand} ${carObj.model}` : r.carId;
+
+  const idDoc = docs?.find((d) => d.documentType === "id_document");
+  const licenseDoc = docs?.find((d) => d.documentType === "driver_license");
+
+  const sectionLabel = "mb-2 text-[10px] font-medium uppercase tracking-[0.15em] text-white/35";
+
+  const statusBadgeColors = {
+    Pending: "border-[#caa24a]/40 bg-[#caa24a]/10 text-[#caa24a]",
+    Confirmed: "border-green-500/40 bg-green-500/10 text-green-400",
+    Cancelled: "border-red-500/40 bg-red-500/10 text-red-400",
+  };
 
   return (
-    <div className="rounded-xl border border-white/10 bg-black/20 p-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2">
-            <span className="font-medium">{r.fullName}</span>
-            <span className={`rounded-md border px-2 py-0.5 text-[10px] ${statusColors[statusName] || ""}`}>
-              {statusName}
-            </span>
-            {hasDocuments && (
-              <span className="rounded-md border border-blue-500/30 bg-blue-500/10 px-2 py-0.5 text-[10px] text-blue-300">
-                Docs
-              </span>
-            )}
-          </div>
-          <p className="text-sm text-white/50">
-            {r.email} &middot; {r.phone} &middot;{" "}
-            {new Date(r.startDateUtc).toLocaleDateString()} &rarr;{" "}
-            {new Date(r.endDateUtc).toLocaleDateString()} &middot; €{r.totalPrice}
-          </p>
-          {r.notes && <p className="text-xs text-white/40">Notes: {r.notes}</p>}
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Car */}
+        <div>
+          <p className={sectionLabel}>MAKINA</p>
+          <p className="text-sm font-semibold text-white">{carName}</p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={toggleDocs}
-            className="rounded-lg border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs text-blue-300 hover:bg-blue-500/20"
-          >
-            {showDocs ? "Hide Docs" : "View Docs"}
-          </button>
-          {statusName !== "Confirmed" && (
-            <button onClick={onConfirm} className="rounded-lg border border-green-500/30 bg-green-500/10 px-3 py-1 text-xs text-green-300 hover:bg-green-500/20">
-              Confirm
-            </button>
+
+        {/* Client */}
+        <div>
+          <p className={sectionLabel}>KLIENTI</p>
+          <p className="text-sm font-semibold text-white">{r.fullName}</p>
+          <p className="mt-0.5 text-xs text-white/50">{r.phone || r.email}</p>
+        </div>
+
+        {/* Dates */}
+        <div>
+          <p className={sectionLabel}>DATAT</p>
+          {editing ? (
+            <div className="space-y-2">
+              <div>
+                <label className="text-[10px] text-white/40">Fillimi</label>
+                <input
+                  type="date"
+                  value={editStart}
+                  onChange={(e) => setEditStart(e.target.value)}
+                  className="h-9 w-full rounded-lg border border-white/10 bg-black/30 px-3 text-xs text-white outline-none focus:border-[#caa24a]/60"
+                />
+              </div>
+              <div>
+                <label className="text-[10px] text-white/40">Dorezimi</label>
+                <input
+                  type="date"
+                  value={editEnd}
+                  onChange={(e) => setEditEnd(e.target.value)}
+                  className="h-9 w-full rounded-lg border border-white/10 bg-black/30 px-3 text-xs text-white outline-none focus:border-[#caa24a]/60"
+                />
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={saveEdit}
+                  disabled={savingDates}
+                  className="rounded-lg bg-[#caa24a] px-3 py-1.5 text-xs font-semibold text-black hover:brightness-110 disabled:opacity-50"
+                >
+                  {savingDates ? "..." : "Ruaj"}
+                </button>
+                <button
+                  onClick={() => setEditing(false)}
+                  className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/60 hover:bg-white/10"
+                >
+                  Anulo
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <p className="text-sm text-white">
+                {startDate.toLocaleDateString("sq-AL", { day: "2-digit", month: "short", year: "numeric" })}
+                {" "}<span className="text-white/30">&rarr;</span>{" "}
+                {endDate.toLocaleDateString("sq-AL", { day: "2-digit", month: "short", year: "numeric" })}
+              </p>
+              <p className="mt-0.5 text-xs text-white/40">
+                {days} {days === 1 ? "dite" : "dite"}
+              </p>
+              <button
+                onClick={openEdit}
+                className="mt-1.5 text-[10px] font-medium text-[#caa24a] hover:text-[#dbb55a]"
+              >
+                Ndrysho datat &#9998;
+              </button>
+            </>
           )}
-          {statusName !== "Cancelled" && (
-            <button onClick={onCancel} className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-1 text-xs text-red-300 hover:bg-red-500/20">
-              Cancel
+        </div>
+      </div>
+
+      <div className="my-4 h-px bg-white/5" />
+
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Price */}
+        <div>
+          <p className={sectionLabel}>CMIMI</p>
+          <p className="text-2xl font-bold text-white">
+            €{r.totalPrice || 0}
+          </p>
+          <p className="mt-1 text-xs text-white/40">
+            {days} {days === 1 ? "dite" : "dite"}
+          </p>
+        </div>
+
+        {/* Status */}
+        <div>
+          <p className={sectionLabel}>STATUSI</p>
+          <span className={`inline-block rounded-lg border px-3 py-1.5 text-xs font-semibold ${statusBadgeColors[statusName] || ""}`}>
+            {statusName === "Pending" ? "Ne Pritje" : statusName === "Confirmed" ? "Konfirmuar" : "Anuluar"}
+          </span>
+        </div>
+
+        {/* Documents */}
+        <div>
+          <p className={sectionLabel}>DOKUMENTET E KERKUARA</p>
+          {loadingDocs ? (
+            <p className="text-xs text-white/40">Duke ngarkuar...</p>
+          ) : (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-white/30">&#128196;</span>
+                  <span className="text-xs text-white/70">ID / Pasaporte</span>
+                </div>
+                {idDoc ? (
+                  <button
+                    onClick={() => openDoc(idDoc.id)}
+                    className="flex items-center gap-1 text-[10px] font-medium text-[#caa24a] hover:text-[#dbb55a]"
+                  >
+                    Shiko &#8599;
+                  </button>
+                ) : (
+                  <span className="text-[10px] text-white/25">Mungon</span>
+                )}
+              </div>
+              <div className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-white/30">&#128197;</span>
+                  <span className="text-xs text-white/70">Patenta e Shoferit</span>
+                </div>
+                {licenseDoc ? (
+                  <button
+                    onClick={() => openDoc(licenseDoc.id)}
+                    className="flex items-center gap-1 text-[10px] font-medium text-[#caa24a] hover:text-[#dbb55a]"
+                  >
+                    Shiko &#8599;
+                  </button>
+                ) : (
+                  <span className="text-[10px] text-white/25">Mungon</span>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="my-4 h-px bg-white/5" />
+
+      {/* Notes */}
+      <div className="mb-4">
+        <p className={sectionLabel}>SHENIMET E ADMINIT</p>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={notes}
+            onChange={(e) => { setNotes(e.target.value); setNotesDirty(true); }}
+            placeholder="Shto shenim..."
+            className="h-9 flex-1 rounded-lg border border-white/10 bg-black/30 px-3 text-xs text-white placeholder:text-white/25 outline-none focus:border-[#caa24a]/60"
+          />
+          {notesDirty && (
+            <button
+              onClick={async () => {
+                setSavingNotes(true);
+                try {
+                  await updateReservationNotes(r.id, notes, token);
+                  setNotesDirty(false);
+                  if (onNotesUpdated) onNotesUpdated();
+                } catch (err) {
+                  alert(err.message);
+                } finally {
+                  setSavingNotes(false);
+                }
+              }}
+              disabled={savingNotes}
+              className="rounded-lg bg-[#caa24a] px-4 py-1.5 text-xs font-semibold text-black hover:brightness-110 disabled:opacity-50"
+            >
+              {savingNotes ? "..." : "Ruaj"}
             </button>
           )}
         </div>
       </div>
 
-      {showDocs && (
-        <div className="mt-3 rounded-lg border border-white/10 bg-black/30 p-3">
-          {loadingDocs ? (
-            <p className="text-xs text-white/50">Loading documents...</p>
-          ) : !docs || docs.length === 0 ? (
-            <p className="text-xs text-white/40">No documents uploaded for this reservation.</p>
-          ) : (
-            <div className="space-y-2">
-              {docs.map((doc) => (
-                <div key={doc.id} className="flex items-center justify-between gap-3 rounded-lg border border-white/5 bg-white/[0.02] p-2">
-                  <div className="min-w-0">
-                    <p className="text-xs font-medium text-white/80">{docLabel(doc.documentType)}</p>
-                    <p className="truncate text-[10px] text-white/40">{doc.fileName}</p>
-                  </div>
-                  <a
-                    href={getDocumentDownloadUrl(doc.id)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      // Fetch with auth header and open in new tab
-                      fetch(getDocumentDownloadUrl(doc.id), {
-                        headers: { Authorization: `Bearer ${token}` },
-                      })
-                        .then((res) => res.blob())
-                        .then((blob) => {
-                          const url = URL.createObjectURL(blob);
-                          window.open(url, "_blank");
-                        });
-                    }}
-                    className="shrink-0 rounded-lg border border-[#caa24a]/30 bg-[#caa24a]/10 px-3 py-1 text-xs text-[#caa24a] hover:bg-[#caa24a]/20"
-                  >
-                    View / Download
-                  </a>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+      {/* Action buttons */}
+      <div className="flex flex-wrap gap-2">
+        {statusName !== "Confirmed" && (
+          <button
+            onClick={onConfirm}
+            className="flex items-center gap-1.5 rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-2 text-xs font-medium text-green-300 transition hover:bg-green-500/20"
+          >
+            &#10003; Konfirmo
+          </button>
+        )}
+        {statusName !== "Cancelled" && (
+          <button
+            onClick={onCancel}
+            className="flex items-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-xs font-medium text-red-300 transition hover:bg-red-500/20"
+          >
+            &#10005; Anulo
+          </button>
+        )}
+      </div>
     </div>
   );
 }
@@ -733,31 +905,39 @@ function ReservationsTab({ token }) {
   for (let i = 0; i < startDow; i++) calendarCells.push(null);
   for (let d = 1; d <= totalDays; d++) calendarCells.push(d);
 
+  // Normalize a date string to midnight UTC (strip time portion)
+  // Backend returns dates without Z suffix, so we append it to force UTC parsing
+  const toMidnight = (d) => {
+    const str = typeof d === "string" && !d.endsWith("Z") ? d + "Z" : d;
+    const dt = new Date(str);
+    return new Date(Date.UTC(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate()));
+  };
+
   // Returns "confirmed", "pending", or "free"
+  // Drop-off day is free — only pickup through day before drop-off are booked
   const getDayStatus = (day) => {
     if (!day) return "free";
-    const dateStart = new Date(calYear, calMonth, day);
-    const dateEnd = new Date(calYear, calMonth, day + 1);
+    const dayDate = new Date(Date.UTC(calYear, calMonth, day));
     let hasPending = false;
     for (const r of carReservations) {
-      const rStart = new Date(r.startDateUtc);
-      const rEnd = new Date(r.endDateUtc);
-      if (!datesOverlap(dateStart, dateEnd, rStart, rEnd)) continue;
-      const st = getStatusName(r.status);
-      if (st === "Confirmed") return "confirmed";
-      if (st === "Pending") hasPending = true;
+      const rStart = toMidnight(r.startDateUtc);
+      const rEnd = toMidnight(r.endDateUtc); // drop-off day = free
+      if (dayDate >= rStart && dayDate < rEnd) {
+        const st = getStatusName(r.status);
+        if (st === "Confirmed") return "confirmed";
+        if (st === "Pending") hasPending = true;
+      }
     }
     return hasPending ? "pending" : "free";
   };
 
   const getReservationsForDate = (day) => {
     if (!day) return [];
-    const dateStart = new Date(calYear, calMonth, day);
-    const dateEnd = new Date(calYear, calMonth, day + 1);
+    const dayDate = new Date(Date.UTC(calYear, calMonth, day));
     return carReservations.filter((r) => {
-      const rStart = new Date(r.startDateUtc);
-      const rEnd = new Date(r.endDateUtc);
-      return datesOverlap(dateStart, dateEnd, rStart, rEnd);
+      const rStart = toMidnight(r.startDateUtc);
+      const rEnd = toMidnight(r.endDateUtc);
+      return dayDate >= rStart && dayDate < rEnd;
     });
   };
 
@@ -769,10 +949,8 @@ function ReservationsTab({ token }) {
 
   const openBookingForm = (date) => {
     const start = new Date(calYear, calMonth, date || 1);
-    const end = new Date(calYear, calMonth, (date || 1) + 1);
     const startStr = `${start.getFullYear()}-${pad(start.getMonth() + 1)}-${pad(start.getDate())}`;
-    const endStr = `${end.getFullYear()}-${pad(end.getMonth() + 1)}-${pad(end.getDate())}`;
-    setBookingForm({ ...emptyBooking, startDate: startStr, endDate: endStr });
+    setBookingForm({ ...emptyBooking, startDate: startStr, endDate: startStr });
     setShowBooking(true);
   };
 
@@ -787,8 +965,8 @@ function ReservationsTab({ token }) {
         phone: bookingForm.phone,
         pickupLocation: bookingForm.pickupLocation,
         dropoffLocation: bookingForm.dropoffLocation,
-        startDateUtc: new Date(`${bookingForm.startDate}T00:00:00`).toISOString(),
-        endDateUtc: new Date(`${bookingForm.endDate}T23:59:00`).toISOString(),
+        startDateUtc: `${bookingForm.startDate}T00:00:00Z`,
+        endDateUtc: `${bookingForm.endDate}T00:00:00Z`,
         notes: bookingForm.notes || null,
       });
       setShowBooking(false);
@@ -1002,6 +1180,8 @@ function ReservationsTab({ token }) {
                     hasDocuments={hasDocuments}
                     onConfirm={() => changeStatus(r.id, "Confirmed")}
                     onCancel={() => changeStatus(r.id, "Cancelled")}
+                    onNotesUpdated={load}
+                    cars={cars}
                     token={token}
                   />
                 );
@@ -1158,67 +1338,20 @@ function ReservationsTab({ token }) {
                 .filter((r) => r.carId === selectedCarId)
                 .map((r) => {
                   const statusName = getStatusName(r.status);
+                  const hasDocuments = Array.isArray(r.documents) && r.documents.length > 0;
                   return (
-                    <div
+                    <ReservationCard
                       key={r.id}
-                      className="rounded-2xl border border-white/10 bg-white/5 p-5"
-                    >
-                      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-3">
-                            <h4 className="text-lg font-semibold">{r.fullName}</h4>
-                            <span
-                              className={`rounded-md border px-2 py-0.5 text-xs ${statusColors[statusName] || ""}`}
-                            >
-                              {statusName}
-                            </span>
-                          </div>
-                          <p className="mt-1 text-sm text-white/60">
-                            {r.email} &middot; {r.phone}
-                          </p>
-                          <p className="mt-2 text-sm text-white/70">
-                            {r.pickupLocation} &middot;{" "}
-                            {new Date(r.startDateUtc).toLocaleDateString()}{" "}
-                            &rarr; {r.dropoffLocation} &middot;{" "}
-                            {new Date(r.endDateUtc).toLocaleDateString()}
-                          </p>
-                          <p className="mt-1 text-sm font-semibold text-[#caa24a]">
-                            Total: €{r.totalPrice}
-                          </p>
-                          {r.notes && (
-                            <p className="mt-2 text-xs text-white/40">
-                              Notes: {r.notes}
-                            </p>
-                          )}
-                        </div>
-                        <div className="flex shrink-0 gap-2">
-                          {statusName !== "Confirmed" && (
-                            <button
-                              onClick={() => changeStatus(r.id, "Confirmed")}
-                              className="rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-1.5 text-sm text-green-300 hover:bg-green-500/20"
-                            >
-                              Confirm
-                            </button>
-                          )}
-                          {statusName !== "Cancelled" && (
-                            <button
-                              onClick={() => changeStatus(r.id, "Cancelled")}
-                              className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-1.5 text-sm text-red-300 hover:bg-red-500/20"
-                            >
-                              Cancel
-                            </button>
-                          )}
-                          {statusName !== "Pending" && (
-                            <button
-                              onClick={() => changeStatus(r.id, "Pending")}
-                              className="rounded-lg border border-yellow-500/30 bg-yellow-500/10 px-4 py-1.5 text-sm text-yellow-300 hover:bg-yellow-500/20"
-                            >
-                              Pending
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    </div>
+                      reservation={r}
+                      statusName={statusName}
+                      statusColors={statusColors}
+                      hasDocuments={hasDocuments}
+                      onConfirm={() => changeStatus(r.id, "Confirmed")}
+                      onCancel={() => changeStatus(r.id, "Cancelled")}
+                      onNotesUpdated={load}
+                      cars={cars}
+                      token={token}
+                    />
                   );
                 })}
             </div>
