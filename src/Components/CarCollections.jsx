@@ -1,27 +1,52 @@
 import { useMemo, useState } from "react";
-import { cars as carsData } from "../data/cars";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-export default function CarCollections({ carsOverride }) {
+export default function CarCollections({ carsOverride = [] }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [query, setQuery] = useState("");
 
-  const list = carsOverride ?? carsData;
+  const getMainImage = (car) => {
+    if (Array.isArray(car.images) && car.images.length > 0) {
+      return car.images[0];
+    }
 
-  const getMainImage = (car) => car.images?.[0];
+    return "https://via.placeholder.com/1200x800?text=Rental+Tirana+VIP";
+  };
 
   const filteredCars = useMemo(() => {
+    const list = Array.isArray(carsOverride) ? carsOverride : [];
     const q = query.trim().toLowerCase();
+
     if (!q) return list;
 
     return list.filter((car) => {
-      const hay = `${car.brand} ${car.model} ${car.year}`.toLowerCase();
+      const hay =
+        `${car.brand || ""} ${car.model || ""} ${car.year || ""}`.toLowerCase();
       return hay.includes(q);
     });
-  }, [query, list]);
+  }, [query, carsOverride]);
+
+  const pickupDate = searchParams.get("pickupDate");
+  const dropoffDate = searchParams.get("dropoffDate");
+  const selectedDays = pickupDate && dropoffDate
+    ? Math.ceil((new Date(dropoffDate) - new Date(pickupDate)) / (1000 * 60 * 60 * 24))
+    : 0;
+
+  const getEffectivePrice = (car) => {
+    if (selectedDays === 2 && car.price2Days > 0) {
+      return { perDay: car.price2Days / 2, total: car.price2Days, hasDiscount: true };
+    }
+    if (selectedDays >= 3 && selectedDays <= 7 && car.price3to7PerDay > 0) {
+      return { perDay: car.price3to7PerDay, total: selectedDays * car.price3to7PerDay, hasDiscount: true };
+    }
+    if (selectedDays === 1) {
+      return { perDay: car.pricePerDay, total: car.pricePerDay, hasDiscount: false };
+    }
+    return null;
+  };
 
   const goToCarDetails = (car) => {
     const qs = searchParams.toString();
@@ -31,7 +56,6 @@ export default function CarCollections({ carsOverride }) {
   return (
     <section id="cars" className="w-full pb-14">
       <div className="mx-auto w-full max-w-7xl px-4">
-        {/* header */}
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 className="text-3xl font-semibold text-white">
@@ -40,7 +64,6 @@ export default function CarCollections({ carsOverride }) {
             <p className="mt-2 text-white/60">{t("collections.subtitle")}</p>
           </div>
 
-          {/* search */}
           <div className="w-full md:w-[360px]">
             <label className="mb-2 block text-xs uppercase tracking-widest text-white/40">
               {t("collections.searchLabel")}
@@ -54,14 +77,12 @@ export default function CarCollections({ carsOverride }) {
           </div>
         </div>
 
-        {/* grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredCars.map((car) => (
             <article
               key={car.id}
               className="group overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_0_40px_rgba(0,0,0,0.35)] backdrop-blur"
             >
-              {/* main img */}
               <div className="relative h-64 w-full overflow-hidden bg-black/40">
                 <img
                   src={getMainImage(car)}
@@ -70,49 +91,34 @@ export default function CarCollections({ carsOverride }) {
                   loading="lazy"
                 />
 
-                {/* badge */}
-                {typeof car.available === "boolean" && (
-                  <div
-                    className={`absolute right-4 top-4 rounded-md border px-3 py-1 text-xs tracking-widest ${
-                      car.available
-                        ? "border-[#caa24a]/40 bg-black/40 text-[#caa24a]"
-                        : "border-white/20 bg-black/40 text-white/70"
-                    }`}
-                  >
-                    {car.available
-                      ? t("collections.available")
-                      : t("collections.notAvailable")}
-                  </div>
-                )}
               </div>
 
-              {/* content */}
               <div className="p-6">
-                {/* brand/model/year are DATA */}
                 <h3 className="text-2xl font-semibold text-white">
                   {car.brand}
                 </h3>
                 <p className="mt-2 text-sm text-white/70">{car.model}</p>
                 <p className="text-sm text-white/40">{car.year}</p>
 
-                {/* specs */}
                 <div className="mt-5 space-y-3 text-sm text-white/70">
                   <div className="flex items-center gap-2">
                     <span className="text-[#caa24a]">⛽</span>
                     <span>
                       <span className="text-white/45">{t("specs.fuel")}:</span>{" "}
-                      {car.fuelKey ? t(car.fuelKey) : "-"}
+                      {car.fuelKey ? t(car.fuelKey) : car.fuelType || "-"}
                     </span>
                   </div>
+
                   <div className="flex items-center gap-2">
                     <span className="text-[#caa24a]">⚙️</span>
                     <span>
                       <span className="text-white/45">
                         {t("specs.gearbox")}:
                       </span>{" "}
-                      {car.gearboxKey ? t(car.gearboxKey) : "-"}
+                      {car.gearboxKey ? t(car.gearboxKey) : car.gearbox || "-"}
                     </span>
                   </div>
+
                   <div className="flex items-center gap-2">
                     <span className="text-[#caa24a]">👤</span>
                     <span>
@@ -124,15 +130,75 @@ export default function CarCollections({ carsOverride }) {
 
                 <div className="my-6 h-px w-full bg-white/10" />
 
-                {/* price */}
                 <div className="flex items-end justify-between gap-4">
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-white/40">
-                      {t("collections.pricePerDay")}
-                    </p>
-                    <p className="mt-2 text-3xl font-semibold text-[#caa24a]">
-                      €{car.pricePerDay}
-                    </p>
+                    {(() => {
+                      const pricing = selectedDays > 0 ? getEffectivePrice(car) : null;
+
+                      if (selectedDays > 7) {
+                        return (
+                          <>
+                            <p className="text-xs uppercase tracking-widest text-white/40">
+                              {t("collections.pricePerDay")}
+                            </p>
+                            <p className="mt-1 text-lg font-semibold text-white/50 line-through">
+                              €{car.pricePerDay}
+                            </p>
+                            <p className="mt-1 text-xs text-[#caa24a]">
+                              {t("pricing.contactForPrice")}
+                            </p>
+                          </>
+                        );
+                      }
+
+                      if (pricing && pricing.hasDiscount) {
+                        return (
+                          <>
+                            <p className="text-xs uppercase tracking-widest text-white/40">
+                              {selectedDays} {selectedDays === 1 ? t("collections.day") : t("pricing.days")} — {t("collections.pricePerDay")}
+                            </p>
+                            <div className="mt-1 flex items-baseline gap-2">
+                              <p className="text-3xl font-semibold text-[#caa24a]">
+                                €{pricing.perDay}
+                              </p>
+                              <p className="text-sm text-white/40 line-through">
+                                €{car.pricePerDay}
+                              </p>
+                            </div>
+                            <p className="mt-1 text-xs font-medium text-green-400">
+                              {t("pricing.total")}: €{pricing.total}
+                            </p>
+                          </>
+                        );
+                      }
+
+                      if (pricing) {
+                        return (
+                          <>
+                            <p className="text-xs uppercase tracking-widest text-white/40">
+                              {t("collections.pricePerDay")}
+                            </p>
+                            <p className="mt-2 text-3xl font-semibold text-[#caa24a]">
+                              €{car.pricePerDay}
+                            </p>
+                            <p className="mt-1 text-xs text-white/50">
+                              {t("pricing.total")}: €{pricing.total}
+                            </p>
+                          </>
+                        );
+                      }
+
+                      return (
+                        <>
+                          <p className="text-xs uppercase tracking-widest text-white/40">
+                            {t("collections.pricePerDay")}
+                          </p>
+                          <p className="mt-2 text-3xl font-semibold text-[#caa24a]">
+                            €{car.pricePerDay}
+                          </p>
+                        </>
+                      );
+                    })()}
                   </div>
 
                   <button
@@ -151,7 +217,6 @@ export default function CarCollections({ carsOverride }) {
           ))}
         </div>
 
-        {/* empty state */}
         {filteredCars.length === 0 && (
           <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 p-8 text-center text-white/70">
             {t("collections.emptyState", { query })}

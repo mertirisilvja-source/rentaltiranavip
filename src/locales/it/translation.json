@@ -22,10 +22,18 @@
     "available": "Disponibile",
     "notAvailable": "Non disponibile",
     "view": "VEDI",
-    "hint": "Clicca “Vedi” per vedere tutti i dettagli.",
+    "hint": "Clicca 'Vedi' per vedere tutti i dettagli.",
     "close": "Chiudi",
     "photoTitle": "Foto {{n}}",
-    "emptyState": "Nessuna auto trovata per “{{query}}”."
+    "emptyState": "Nessuna auto trovata per '{{query}}'."
+  },
+  "pricing": {
+    "days": "giorni",
+    "total": "Totale",
+    "discounted": "Prezzo scontato",
+    "contactForPrice": "Per 7+ giorni, contatta il nostro staff per un prezzo speciale.",
+    "contactWhatsApp": "Contattaci su WhatsApp",
+    "longRentalNote": "I noleggi superiori a 7 giorni richiedono un coordinamento diretto con il nostro team."
   },
   "specs": {
     "fuel": "Carburante",
@@ -56,6 +64,9 @@
     },
 
     "noteDifferentTime": "Se l'orario di riconsegna non coincide con quello di ritiro, verrà applicato un costo aggiuntivo.",
+    "carBooked": "Questa auto è già prenotata per le date selezionate. Si prega di scegliere date diverse.",
+    "checking": "Verifica disponibilità...",
+    "unavailable": "Non disponibile",
     "continue": "Continua la prenotazione",
     "viewCollection": "Visualizza tutte le collezioni di auto",
 
@@ -93,7 +104,9 @@
       "pickReservationTitle": "Scegli i dettagli della prenotazione",
       "pickReservationSubtitle": "Non hai selezionato date/luoghi. Puoi sceglierli qui.",
       "saveReservation": "Salva i dettagli",
-      "differentDropoff": "Luogo di riconsegna diverso"
+      "differentDropoff": "Luogo di riconsegna diverso",
+      "carUnavailable": "Questa auto è già prenotata per le date selezionate. Si prega di scegliere date diverse.",
+      "submitting": "Prenotazione in corso..."
     }
   },
   "contact": {
@@ -158,7 +171,26 @@
       "reserve": "Prenota",
       "collection": "Collezione Auto",
       "about": "Chi Siamo",
-      "contact": "Contattaci"
+      "contact": "Contattaci",
+      "terms": "Termini e Condizioni",
+      "privacy": "Informativa sulla Privacy"
     }
+  },
+  "terms": {
+    "title": "Termini e Condizioni",
+    "rental": { "title": "1. Contratto di Noleggio", "body": "Effettuando una prenotazione tramite Rental Tirana VIP, accetti questi termini. Il contratto viene finalizzato dopo la conferma del nostro staff." },
+    "requirements": { "title": "2. Requisiti", "body": "I noleggianti devono avere almeno 21 anni e possedere una patente valida. Un documento d'identità valido è richiesto al ritiro." },
+    "payment": { "title": "3. Pagamento", "body": "Il pagamento viene effettuato al ritiro o come concordato. I prezzi indicati sono giornalieri." },
+    "cancellation": { "title": "4. Cancellazione", "body": "Le prenotazioni possono essere cancellate gratuitamente fino a 24 ore prima del ritiro." },
+    "liability": { "title": "5. Responsabilità", "body": "Il noleggiante è responsabile del veicolo durante il periodo di noleggio." },
+    "contact": { "title": "6. Contatto", "body": "Per domande, contattaci al +355 68 584 5850." }
+  },
+  "privacy": {
+    "title": "Informativa sulla Privacy",
+    "collect": { "title": "1. Dati Raccolti", "body": "Quando effettui una prenotazione, raccogliamo nome, email, telefono e date di noleggio." },
+    "use": { "title": "2. Utilizzo dei Dati", "body": "I tuoi dati vengono utilizzati per gestire le prenotazioni e comunicare con te. Non vendiamo dati personali a terzi." },
+    "storage": { "title": "3. Archiviazione", "body": "I tuoi dati sono conservati in modo sicuro sui nostri server." },
+    "rights": { "title": "4. I Tuoi Diritti", "body": "Hai il diritto di accedere, correggere o cancellare i tuoi dati. Contattaci al +355 68 584 5850." },
+    "cookies": { "title": "5. Cookie", "body": "Utilizziamo solo cookie minimi per la preferenza della lingua." }
   }
 }

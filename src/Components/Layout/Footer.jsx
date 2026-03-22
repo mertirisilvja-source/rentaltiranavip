@@ -62,6 +62,14 @@ function Footer() {
               <Link to="/contact" className="hover:text-white transition">
                 {t("footer.links.contact")}
               </Link>
+
+              <Link to="/terms" className="hover:text-white transition">
+                {t("footer.links.terms")}
+              </Link>
+
+              <Link to="/privacy" className="hover:text-white transition">
+                {t("footer.links.privacy")}
+              </Link>
             </div>
           </div>
 

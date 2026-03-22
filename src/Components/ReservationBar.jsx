@@ -17,6 +17,12 @@ export default function ReservationBar() {
   const navigate = useNavigate();
 
   const now = useMemo(() => new Date(), []);
+  const tomorrow = useMemo(() => {
+    const d = new Date(now);
+    d.setDate(d.getDate() + 1);
+    return d;
+  }, [now]);
+
   const [hasDropoffLocation, setHasDropoffLocation] = useState(false);
   const [pickupLocation, setPickupLocation] = useState("zyra");
   const [dropoffLocation, setDropoffLocation] = useState("zyra");
@@ -24,12 +30,35 @@ export default function ReservationBar() {
   const [pickupDate, setPickupDate] = useState(toDate(now));
   const [pickupTime, setPickupTime] = useState(toTime(now));
 
-  const [dropoffDate, setDropoffDate] = useState(toDate(now));
+  const [dropoffDate, setDropoffDate] = useState(toDate(tomorrow));
   const [dropoffTime, setDropoffTime] = useState(toTime(now));
 
   useEffect(() => {
     setDropoffTime(pickupTime);
   }, [pickupTime]);
+
+  function nextDay(dateStr) {
+    const d = new Date(dateStr + "T00:00:00");
+    d.setDate(d.getDate() + 1);
+    return toDate(d);
+  }
+
+  const handlePickupDateChange = (val) => {
+    setPickupDate(val);
+    const minDropoff = nextDay(val);
+    if (dropoffDate <= val) {
+      setDropoffDate(minDropoff);
+    }
+  };
+
+  const handleDropoffDateChange = (val) => {
+    const minDropoff = nextDay(pickupDate);
+    if (val < minDropoff) {
+      setDropoffDate(minDropoff);
+    } else {
+      setDropoffDate(val);
+    }
+  };
 
   const input =
     "h-10 w-full rounded-sm bg-[#bfbfbf] text-black px-3 text-sm outline-none " +
@@ -167,7 +196,8 @@ export default function ReservationBar() {
               <input
                 type="date"
                 value={pickupDate}
-                onChange={(e) => setPickupDate(e.target.value)}
+                min={toDate(now)}
+                onChange={(e) => handlePickupDateChange(e.target.value)}
                 className={input}
               />
               <input
@@ -183,7 +213,8 @@ export default function ReservationBar() {
               <input
                 type="date"
                 value={dropoffDate}
-                onChange={(e) => setDropoffDate(e.target.value)}
+                min={nextDay(pickupDate)}
+                onChange={(e) => handleDropoffDateChange(e.target.value)}
                 className={input}
               />
               <input
@@ -281,7 +312,8 @@ export default function ReservationBar() {
               <input
                 type="date"
                 value={pickupDate}
-                onChange={(e) => setPickupDate(e.target.value)}
+                min={toDate(now)}
+                onChange={(e) => handlePickupDateChange(e.target.value)}
                 className={input}
               />
             </div>
@@ -302,7 +334,8 @@ export default function ReservationBar() {
               <input
                 type="date"
                 value={dropoffDate}
-                onChange={(e) => setDropoffDate(e.target.value)}
+                min={nextDay(pickupDate)}
+                onChange={(e) => handleDropoffDateChange(e.target.value)}
                 className={input}
               />
             </div>

@@ -22,10 +22,18 @@
     "available": "Available",
     "notAvailable": "Not available",
     "view": "VIEW",
-    "hint": "Click “View” to see car details.",
+    "hint": "Click 'View' to see car details.",
     "close": "Close",
     "photoTitle": "Photo {{n}}",
-    "emptyState": "No cars found for “{{query}}”."
+    "emptyState": "No cars found for '{{query}}'."
+  },
+  "pricing": {
+    "days": "days",
+    "total": "Total",
+    "discounted": "Discounted price",
+    "contactForPrice": "For 7+ days, please contact our staff for a special price.",
+    "contactWhatsApp": "Contact us on WhatsApp",
+    "longRentalNote": "Rentals longer than 7 days require direct coordination with our team."
   },
   "specs": {
     "fuel": "Fuel",
@@ -54,6 +62,9 @@
       "airport": "Tirana International Airport (Nënë Tereza)"
     },
     "noteDifferentTime": "If the drop-off time is not the same as the pick-up time, an extra fee applies.",
+    "carBooked": "This car is already booked for the selected dates. Please choose different dates.",
+    "checking": "Checking availability...",
+    "unavailable": "Not Available",
     "continue": "Continue booking",
     "viewCollection": "View all car collections",
     "mobileTitle": "Book a car",
@@ -89,7 +100,9 @@
       "pickReservationTitle": "Choose reservation details",
       "pickReservationSubtitle": "You haven’t selected dates/locations. You can choose them here.",
       "saveReservation": "Save details",
-      "differentDropoff": "Different drop-off location"
+      "differentDropoff": "Different drop-off location",
+      "carUnavailable": "This car is already booked for the selected dates. Please choose different dates.",
+      "submitting": "Reserving..."
     }
   },
   "contact": {
@@ -154,7 +167,26 @@
       "reserve": "Reserve",
       "collection": "Car Collection",
       "about": "About Us",
-      "contact": "Contact Us"
+      "contact": "Contact Us",
+      "terms": "Terms & Conditions",
+      "privacy": "Privacy Policy"
     }
+  },
+  "terms": {
+    "title": "Terms & Conditions",
+    "rental": { "title": "1. Rental Agreement", "body": "By making a reservation through Rental Tirana VIP, you agree to these terms. The rental agreement is finalized upon confirmation by our staff via WhatsApp or phone." },
+    "requirements": { "title": "2. Requirements", "body": "Renters must be at least 21 years old and hold a valid driver's license. A valid identity document (ID or passport) is required at the time of pick-up." },
+    "payment": { "title": "3. Payment", "body": "Payment is made at the time of pick-up or as agreed with our staff. Prices displayed on the website are per day. If the drop-off time differs from the pick-up time, an additional fee may apply." },
+    "cancellation": { "title": "4. Cancellation", "body": "Reservations can be cancelled free of charge up to 24 hours before the pick-up time. Late cancellations or no-shows may be subject to a fee." },
+    "liability": { "title": "5. Liability", "body": "The renter is responsible for the vehicle during the rental period. Any damage, fines, or violations incurred during the rental are the renter's responsibility." },
+    "contact": { "title": "6. Contact", "body": "For questions about these terms, contact us at +355 68 584 5850 or visit our office in Tirana." }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "collect": { "title": "1. Information We Collect", "body": "When you make a reservation, we collect your name, email address, phone number, and rental dates. We also collect identity documents and driver's license information at pick-up." },
+    "use": { "title": "2. How We Use Your Information", "body": "Your information is used to process reservations, communicate with you about your booking, and provide our rental services. We do not sell or share your personal data with third parties for marketing purposes." },
+    "storage": { "title": "3. Data Storage", "body": "Your data is stored securely on our servers. We retain reservation data for the duration required by Albanian law and for our business records." },
+    "rights": { "title": "4. Your Rights", "body": "You have the right to access, correct, or delete your personal data. To exercise these rights, contact us at +355 68 584 5850 or email admin@rentaltiranavip.com." },
+    "cookies": { "title": "5. Cookies", "body": "We use minimal cookies for language preference storage only. No tracking cookies or third-party analytics cookies are used." }
   }
 }

@@ -22,10 +22,18 @@
     "available": "E lirë",
     "notAvailable": "E zënë",
     "view": "SHIKO",
-    "hint": "Kliko “Shiko” për të parë detajet e makinës.",
+    "hint": "Kliko 'Shiko' për të parë detajet e makinës.",
     "close": "Mbyll",
     "photoTitle": "Foto {{n}}",
-    "emptyState": "Nuk u gjet asnjë makinë për “{{query}}”."
+    "emptyState": "Nuk u gjet asnjë makinë për '{{query}}'."
+  },
+  "pricing": {
+    "days": "ditë",
+    "total": "Totali",
+    "discounted": "Çmim i zbritur",
+    "contactForPrice": "Për 7+ ditë, ju lutem kontaktoni stafin tonë për një çmim special.",
+    "contactWhatsApp": "Na kontaktoni në WhatsApp",
+    "longRentalNote": "Qiratë më të gjata se 7 ditë kërkojnë koordinim direkt me ekipin tonë."
   },
   "specs": {
     "fuel": "Karburanti",
@@ -54,6 +62,9 @@
       "airport": "Aeroporti Nënë Tereza, Tiranë"
     },
     "noteDifferentTime": "Nëse ora e dorëzimit nuk është e njëjtë me të marrjes, atëherë kryhet një pagesë ekstra.",
+    "carBooked": "Kjo makinë është e rezervuar për datat e zgjedhura. Ju lutem zgjidhni data të tjera.",
+    "checking": "Duke kontrolluar disponueshmërinë...",
+    "unavailable": "E padisponueshme",
     "continue": "Vazhdo rezervimin",
     "viewCollection": "Shiko të gjithë koleksionin e makinave",
     "mobileTitle": "Rezervo një makinë",
@@ -89,7 +100,9 @@
       "pickReservationTitle": "Zgjidh detajet e rezervimit",
       "pickReservationSubtitle": "Nuk i ke zgjedhur datat/lokacionet. Mund t’i zgjedhësh këtu.",
       "saveReservation": "Ruaj detajet",
-      "differentDropoff": "Lokacion dorëzimi tjetër"
+      "differentDropoff": "Lokacion dorëzimi tjetër",
+      "carUnavailable": "Kjo makinë është e rezervuar për datat e zgjedhura. Ju lutem zgjidhni data të tjera.",
+      "submitting": "Duke rezervuar..."
     }
   },
   "contact": {
@@ -154,7 +167,26 @@
       "reserve": "Rezervo",
       "collection": "Koleksioni i Makinave",
       "about": "Rreth Nesh",
-      "contact": "Na Kontakto"
+      "contact": "Na Kontakto",
+      "terms": "Kushtet e Përdorimit",
+      "privacy": "Politika e Privatësisë"
     }
+  },
+  "terms": {
+    "title": "Kushtet e Përdorimit",
+    "rental": { "title": "1. Marrëveshja e Qirasë", "body": "Duke bërë një rezervim përmes Rental Tirana VIP, ju pranoni këto kushte. Marrëveshja e qirasë finalizohet pas konfirmimit nga stafi ynë përmes WhatsApp ose telefonit." },
+    "requirements": { "title": "2. Kërkesat", "body": "Qiramarrësi duhet të jetë të paktën 21 vjeç dhe të ketë patentë të vlefshme. Një dokument identiteti i vlefshëm (ID ose pasaportë) kërkohet në momentin e marrjes." },
+    "payment": { "title": "3. Pagesa", "body": "Pagesa bëhet në momentin e marrjes ose sipas marrëveshjes me stafin tonë. Çmimet e shfaqura në faqe janë për ditë. Nëse ora e dorëzimit ndryshon nga ora e marrjes, mund të zbatohet një tarifë shtesë." },
+    "cancellation": { "title": "4. Anulimi", "body": "Rezervimet mund të anulohen pa pagesë deri në 24 orë para orës së marrjes. Anulimet e vonuara ose mosparaqitjet mund t'i nënshtrohen një tarife." },
+    "liability": { "title": "5. Përgjegjësia", "body": "Qiramarrësi është përgjegjës për automjetin gjatë periudhës së qirasë. Çdo dëmtim, gjobë ose shkelje gjatë qirasë janë përgjegjësi e qiramarrësit." },
+    "contact": { "title": "6. Kontakti", "body": "Për pyetje rreth këtyre kushteve, na kontaktoni në +355 68 584 5850 ose vizitoni zyrën tonë në Tiranë." }
+  },
+  "privacy": {
+    "title": "Politika e Privatësisë",
+    "collect": { "title": "1. Informacioni që Mbledhim", "body": "Kur bëni një rezervim, ne mbledhim emrin tuaj, adresën e emailit, numrin e telefonit dhe datat e qirasë." },
+    "use": { "title": "2. Si i Përdorim Informacionet", "body": "Informacioni juaj përdoret për të përpunuar rezervimet, për të komunikuar me ju dhe për të ofruar shërbimet tona. Ne nuk shesim ose ndajmë të dhënat tuaja me palë të treta." },
+    "storage": { "title": "3. Ruajtja e të Dhënave", "body": "Të dhënat tuaja ruhen në mënyrë të sigurt në serverët tanë." },
+    "rights": { "title": "4. Të Drejtat Tuaja", "body": "Ju keni të drejtë të aksesoni, korrigjoni ose fshini të dhënat tuaja personale. Na kontaktoni në +355 68 584 5850." },
+    "cookies": { "title": "5. Cookies", "body": "Ne përdorim vetëm cookies minimale për ruajtjen e preferencës së gjuhës." }
   }
 }
