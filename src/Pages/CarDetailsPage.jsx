@@ -297,7 +297,7 @@ export default function CarDetailsPage() {
               <img
                 src={gallery[activeImg] || "https://via.placeholder.com/1200x800?text=No+Image"}
                 alt={`${car.brand} ${car.model}`}
-                className="h-[220px] w-full object-cover sm:h-[360px] lg:h-[520px]"
+                className="h-[220px] w-full object-contain sm:h-[360px] lg:h-[520px]"
               />
             </div>
 

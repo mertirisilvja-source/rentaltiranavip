@@ -87,7 +87,7 @@ export default function CarCollections({ carsOverride = [] }) {
                 <img
                   src={getMainImage(car)}
                   alt={`${car.brand} ${car.model}`}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                  className="h-full w-full object-cover transition duration-500"
                   loading="lazy"
                 />
 
