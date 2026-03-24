@@ -177,9 +177,16 @@
     "rental": { "title": "1. Rental Agreement", "body": "By making a reservation through Rental Tirana VIP, you agree to these terms. The rental agreement is finalized upon confirmation by our staff via WhatsApp or phone." },
     "requirements": { "title": "2. Requirements", "body": "Renters must be at least 21 years old and hold a valid driver's license. A valid identity document (ID or passport) is required at the time of pick-up." },
     "payment": { "title": "3. Payment", "body": "Payment is made at the time of pick-up or as agreed with our staff. Prices displayed on the website are per day. If the drop-off time differs from the pick-up time, an additional fee may apply." },
-    "cancellation": { "title": "4. Cancellation", "body": "Reservations can be cancelled free of charge up to 24 hours before the pick-up time. Late cancellations or no-shows may be subject to a fee." },
-    "liability": { "title": "5. Liability", "body": "The renter is responsible for the vehicle during the rental period. Any damage, fines, or violations incurred during the rental are the renter's responsibility." },
-    "contact": { "title": "6. Contact", "body": "For questions about these terms, contact us at +355 68 584 5850 or visit our office in Tirana." }
+    "deposit": { "title": "4. Deposit", "body": "A deposit may be required to confirm your reservation. The deposit amount depends on the vehicle and rental duration and will be communicated by our staff before confirmation." },
+    "cancellation": {
+      "title": "5. Cancellation & Deposit Refund",
+      "body": "If a deposit has been paid, the following refund policy applies:",
+      "rule1": "Cancellation 14 or more days before the pick-up date: 100% of the deposit is refunded.",
+      "rule2": "Cancellation between 4 and 13 days before the pick-up date: 50% of the deposit is refunded.",
+      "rule3": "Cancellation 4 days or less before the pick-up date: no refund of the deposit."
+    },
+    "liability": { "title": "6. Liability", "body": "The renter is responsible for the vehicle during the rental period. Any damage, fines, or violations incurred during the rental are the renter's responsibility." },
+    "contact": { "title": "7. Contact", "body": "For questions about these terms, contact us at +355 68 584 5850 or visit our office in Tirana." }
   },
   "privacy": {
     "title": "Privacy Policy",

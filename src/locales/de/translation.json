@@ -181,9 +181,16 @@
     "rental": { "title": "1. Mietvertrag", "body": "Mit einer Reservierung über Rental Tirana VIP stimmen Sie diesen Bedingungen zu. Der Mietvertrag wird nach Bestätigung durch unser Team finalisiert." },
     "requirements": { "title": "2. Anforderungen", "body": "Mieter müssen mindestens 21 Jahre alt sein und einen gültigen Führerschein besitzen. Ein gültiges Ausweisdokument ist bei der Abholung erforderlich." },
     "payment": { "title": "3. Zahlung", "body": "Die Zahlung erfolgt bei Abholung oder nach Vereinbarung. Die angezeigten Preise verstehen sich pro Tag." },
-    "cancellation": { "title": "4. Stornierung", "body": "Reservierungen können bis 24 Stunden vor der Abholzeit kostenlos storniert werden." },
-    "liability": { "title": "5. Haftung", "body": "Der Mieter ist während der Mietdauer für das Fahrzeug verantwortlich." },
-    "contact": { "title": "6. Kontakt", "body": "Bei Fragen kontaktieren Sie uns unter +355 68 584 5850." }
+    "deposit": { "title": "4. Kaution", "body": "Eine Kaution kann zur Bestätigung Ihrer Reservierung erforderlich sein. Die Höhe der Kaution hängt vom Fahrzeug und der Mietdauer ab und wird Ihnen von unserem Team vor der Bestätigung mitgeteilt." },
+    "cancellation": {
+      "title": "5. Stornierung & Kautionsrückerstattung",
+      "body": "Wenn eine Kaution gezahlt wurde, gilt folgende Rückerstattungsregelung:",
+      "rule1": "Stornierung 14 oder mehr Tage vor dem Abholdatum: 100% der Kaution wird erstattet.",
+      "rule2": "Stornierung zwischen 4 und 13 Tagen vor dem Abholdatum: 50% der Kaution wird erstattet.",
+      "rule3": "Stornierung 4 Tage oder weniger vor dem Abholdatum: keine Rückerstattung der Kaution."
+    },
+    "liability": { "title": "6. Haftung", "body": "Der Mieter ist während der Mietdauer für das Fahrzeug verantwortlich. Alle Schäden, Bußgelder oder Verstöße während der Mietzeit liegen in der Verantwortung des Mieters." },
+    "contact": { "title": "7. Kontakt", "body": "Bei Fragen kontaktieren Sie uns unter +355 68 584 5850 oder besuchen Sie unser Büro in Tirana." }
   },
   "privacy": {
     "title": "Datenschutzerklärung",

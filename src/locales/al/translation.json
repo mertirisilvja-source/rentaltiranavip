@@ -177,9 +177,16 @@
     "rental": { "title": "1. Marrëveshja e Qirasë", "body": "Duke bërë një rezervim përmes Rental Tirana VIP, ju pranoni këto kushte. Marrëveshja e qirasë finalizohet pas konfirmimit nga stafi ynë përmes WhatsApp ose telefonit." },
     "requirements": { "title": "2. Kërkesat", "body": "Qiramarrësi duhet të jetë të paktën 21 vjeç dhe të ketë patentë të vlefshme. Një dokument identiteti i vlefshëm (ID ose pasaportë) kërkohet në momentin e marrjes." },
     "payment": { "title": "3. Pagesa", "body": "Pagesa bëhet në momentin e marrjes ose sipas marrëveshjes me stafin tonë. Çmimet e shfaqura në faqe janë për ditë. Nëse ora e dorëzimit ndryshon nga ora e marrjes, mund të zbatohet një tarifë shtesë." },
-    "cancellation": { "title": "4. Anulimi", "body": "Rezervimet mund të anulohen pa pagesë deri në 24 orë para orës së marrjes. Anulimet e vonuara ose mosparaqitjet mund t'i nënshtrohen një tarife." },
-    "liability": { "title": "5. Përgjegjësia", "body": "Qiramarrësi është përgjegjës për automjetin gjatë periudhës së qirasë. Çdo dëmtim, gjobë ose shkelje gjatë qirasë janë përgjegjësi e qiramarrësit." },
-    "contact": { "title": "6. Kontakti", "body": "Për pyetje rreth këtyre kushteve, na kontaktoni në +355 68 584 5850 ose vizitoni zyrën tonë në Tiranë." }
+    "deposit": { "title": "4. Depozita", "body": "Një depozitë mund të kërkohet për të konfirmuar rezervimin tuaj. Shuma e depozitës varet nga automjeti dhe kohëzgjatja e qirasë dhe do t'ju komunikohet nga stafi ynë para konfirmimit." },
+    "cancellation": {
+      "title": "5. Anulimi & Kthimi i Depozitës",
+      "body": "Nëse është paguar një depozitë, zbatohet politika e mëposhtme e kthimit:",
+      "rule1": "Anulimi 14 ose më shumë ditë para datës së marrjes: 100% e depozitës kthehet.",
+      "rule2": "Anulimi midis 4 dhe 13 ditëve para datës së marrjes: 50% e depozitës kthehet.",
+      "rule3": "Anulimi 4 ditë ose më pak para datës së marrjes: depozita nuk kthehet."
+    },
+    "liability": { "title": "6. Përgjegjësia", "body": "Qiramarrësi është përgjegjës për automjetin gjatë periudhës së qirasë. Çdo dëmtim, gjobë ose shkelje gjatë qirasë janë përgjegjësi e qiramarrësit." },
+    "contact": { "title": "7. Kontakti", "body": "Për pyetje rreth këtyre kushteve, na kontaktoni në +355 68 584 5850 ose vizitoni zyrën tonë në Tiranë." }
   },
   "privacy": {
     "title": "Politika e Privatësisë",

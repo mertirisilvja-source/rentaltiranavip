@@ -181,9 +181,16 @@
     "rental": { "title": "1. Contratto di Noleggio", "body": "Effettuando una prenotazione tramite Rental Tirana VIP, accetti questi termini. Il contratto viene finalizzato dopo la conferma del nostro staff." },
     "requirements": { "title": "2. Requisiti", "body": "I noleggianti devono avere almeno 21 anni e possedere una patente valida. Un documento d'identità valido è richiesto al ritiro." },
     "payment": { "title": "3. Pagamento", "body": "Il pagamento viene effettuato al ritiro o come concordato. I prezzi indicati sono giornalieri." },
-    "cancellation": { "title": "4. Cancellazione", "body": "Le prenotazioni possono essere cancellate gratuitamente fino a 24 ore prima del ritiro." },
-    "liability": { "title": "5. Responsabilità", "body": "Il noleggiante è responsabile del veicolo durante il periodo di noleggio." },
-    "contact": { "title": "6. Contatto", "body": "Per domande, contattaci al +355 68 584 5850." }
+    "deposit": { "title": "4. Caparra", "body": "Una caparra potrebbe essere richiesta per confermare la prenotazione. L'importo della caparra dipende dal veicolo e dalla durata del noleggio e verrà comunicato dal nostro staff prima della conferma." },
+    "cancellation": {
+      "title": "5. Cancellazione & Rimborso Caparra",
+      "body": "Se è stata versata una caparra, si applica la seguente politica di rimborso:",
+      "rule1": "Cancellazione 14 o più giorni prima della data di ritiro: 100% della caparra viene rimborsata.",
+      "rule2": "Cancellazione tra 4 e 13 giorni prima della data di ritiro: 50% della caparra viene rimborsata.",
+      "rule3": "Cancellazione 4 giorni o meno prima della data di ritiro: nessun rimborso della caparra."
+    },
+    "liability": { "title": "6. Responsabilità", "body": "Il noleggiante è responsabile del veicolo durante il periodo di noleggio. Eventuali danni, multe o violazioni durante il noleggio sono responsabilità del noleggiante." },
+    "contact": { "title": "7. Contatto", "body": "Per domande su questi termini, contattaci al +355 68 584 5850 o visita il nostro ufficio a Tirana." }
   },
   "privacy": {
     "title": "Informativa sulla Privacy",

@@ -11,6 +11,7 @@ import {
   updateReservationStatus,
   updateReservationDates,
   updateReservationNotes,
+  deleteReservation,
   createReservation,
   fetchReservationDocuments,
   getDocumentDownloadUrl,
@@ -519,7 +520,7 @@ function getStatusName(status) {
   return "Pending";
 }
 
-function ReservationCard({ reservation: r, statusName, statusColors, hasDocuments, onConfirm, onCancel, token, onNotesUpdated, cars }) {
+function ReservationCard({ reservation: r, statusName, statusColors, hasDocuments, onConfirm, onCancel, onDelete, token, onNotesUpdated, cars }) {
   const [docs, setDocs] = useState(null);
   const [loadingDocs, setLoadingDocs] = useState(false);
   const [notes, setNotes] = useState(r.notes || "");
@@ -791,6 +792,15 @@ function ReservationCard({ reservation: r, statusName, statusColors, hasDocument
             &#10005; Anulo
           </button>
         )}
+        <button
+          onClick={() => {
+            if (window.confirm("Je i sigurt qe do ta fshish kete rezervim?"))
+              onDelete();
+          }}
+          className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-white/50 transition hover:bg-red-500/20 hover:text-red-300 hover:border-red-500/30"
+        >
+          &#128465; Fshi
+        </button>
       </div>
     </div>
   );
@@ -1180,6 +1190,14 @@ function ReservationsTab({ token }) {
                     hasDocuments={hasDocuments}
                     onConfirm={() => changeStatus(r.id, "Confirmed")}
                     onCancel={() => changeStatus(r.id, "Cancelled")}
+                    onDelete={async () => {
+                      try {
+                        await deleteReservation(r.id, token);
+                        await load();
+                      } catch (err) {
+                        if (!handle401(err)) alert(err.message);
+                      }
+                    }}
                     onNotesUpdated={load}
                     cars={cars}
                     token={token}
@@ -1348,6 +1366,14 @@ function ReservationsTab({ token }) {
                       hasDocuments={hasDocuments}
                       onConfirm={() => changeStatus(r.id, "Confirmed")}
                       onCancel={() => changeStatus(r.id, "Cancelled")}
+                      onDelete={async () => {
+                        try {
+                          await deleteReservation(r.id, token);
+                          await load();
+                        } catch (err) {
+                          if (!handle401(err)) alert(err.message);
+                        }
+                      }}
                       onNotesUpdated={load}
                       cars={cars}
                       token={token}

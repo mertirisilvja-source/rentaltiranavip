@@ -151,6 +151,15 @@ export async function updateReservationNotes(id, notes, token) {
   return res.json();
 }
 
+export async function deleteReservation(id, token) {
+  const res = await fetch(buildUrl(`/api/Reservations/${id}`), {
+    method: "DELETE",
+    headers: authHeaders(token),
+  });
+  check401(res);
+  if (!res.ok) throw new Error("Delete reservation failed");
+}
+
 export async function createReservation(reservation) {
   const res = await fetch(buildUrl("/api/Reservations"), {
     method: "POST",
