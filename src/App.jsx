@@ -49,15 +49,15 @@ function Layout() {
           <Route
             path="*"
             element={
-              <div className="flex min-h-screen flex-col items-center justify-center bg-black px-4 text-white">
+              <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 dark:bg-black px-4 text-gray-900 dark:text-white">
                 <h1 className="text-6xl font-bold text-[#caa24a]">404</h1>
-                <p className="mt-4 text-xl text-white/70">Page not found</p>
-                <p className="mt-2 text-sm text-white/50">The page you're looking for doesn't exist.</p>
+                <p className="mt-4 text-xl text-gray-500 dark:text-white/70">Page not found</p>
+                <p className="mt-2 text-sm text-gray-400 dark:text-white/50">The page you're looking for doesn't exist.</p>
                 <div className="mt-8 flex gap-4">
                   <a href="/" className="rounded-xl bg-[#caa24a] px-6 py-3 font-semibold text-black hover:brightness-110">
                     Go Home
                   </a>
-                  <a href="/cars" className="rounded-xl border border-white/20 px-6 py-3 font-semibold text-white hover:bg-white/10">
+                  <a href="/cars" className="rounded-xl border border-gray-300 dark:border-white/20 px-6 py-3 font-semibold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/10">
                     View Cars
                   </a>
                 </div>

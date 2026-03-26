@@ -34,26 +34,26 @@ export default function AdminLogin() {
   };
 
   const input =
-    "h-11 w-full rounded-xl border border-white/10 bg-black/30 px-4 text-white outline-none placeholder:text-white/30 focus:border-[#caa24a]/60";
+    "h-11 w-full rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-black/30 px-4 text-gray-900 dark:text-white outline-none placeholder:text-gray-400 dark:placeholder:text-white/30 focus:border-[#caa24a]/60";
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-black px-4">
+    <main className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-black px-4">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-sm rounded-2xl border border-white/10 bg-white/5 p-8"
+        className="w-full max-w-sm rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 p-8"
       >
-        <h1 className="text-2xl font-semibold text-white">Admin Login</h1>
-        <p className="mt-2 text-sm text-white/50">Rental Tirana VIP</p>
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Admin Login</h1>
+        <p className="mt-2 text-sm text-gray-400 dark:text-white/50">Rental Tirana VIP</p>
 
         {error && (
-          <div className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-300">
+          <div className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-600 dark:text-red-300">
             {error}
           </div>
         )}
 
         <div className="mt-6 space-y-4">
           <div>
-            <label className="mb-2 block text-sm font-medium text-white/70">
+            <label className="mb-2 block text-sm font-medium text-gray-600 dark:text-white/70">
               Email
             </label>
             <input
@@ -67,7 +67,7 @@ export default function AdminLogin() {
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-white/70">
+            <label className="mb-2 block text-sm font-medium text-gray-600 dark:text-white/70">
               Password
             </label>
             <input

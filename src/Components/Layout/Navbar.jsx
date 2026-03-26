@@ -5,11 +5,15 @@ import {
   Bars3Icon,
   XMarkIcon,
   ChevronDownIcon,
+  SunIcon,
+  MoonIcon,
 } from "@heroicons/react/24/outline";
+import { useTheme } from "../../ThemeContext";
 import logo from "../../assets/logo.jpeg";
 
 function Navbar() {
   const { t, i18n } = useTranslation();
+  const { dark, toggle } = useTheme();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -55,10 +59,10 @@ function Navbar() {
           <img
             src={logo}
             alt="Rental Tirana VIP Logo"
-            className="h-12 w-12 rounded-full object-cover ring-1 ring-white/15"
+            className="h-12 w-12 rounded-full object-cover ring-1 ring-black/10 dark:ring-white/15"
           />
-          <div className="text-white leading-tight">
-            <div className="text-sm tracking-[0.25em] uppercase text-white/90">
+          <div className="text-gray-900 dark:text-white leading-tight">
+            <div className="text-sm tracking-[0.25em] uppercase text-gray-800 dark:text-white/90">
               Rental Tirana
             </div>
             <div className="text-[11px] tracking-[0.35em] uppercase">
@@ -68,7 +72,7 @@ function Navbar() {
         </Link>
 
         {/* desktop nav */}
-        <div className="hidden md:flex items-center gap-10 text-white font-semibold">
+        <div className="hidden md:flex items-center gap-10 text-gray-900 dark:text-white font-semibold">
           <Link to="/" className="hover:text-vipGold-400 transition">
             {t("nav.rezervo")}
           </Link>
@@ -85,6 +89,20 @@ function Navbar() {
             {t("nav.rrethNesh")}
           </Link>
 
+          {/* theme toggle */}
+          <button
+            type="button"
+            onClick={toggle}
+            className="hover:text-vipGold-400 transition"
+            aria-label="Toggle theme"
+          >
+            {dark ? (
+              <SunIcon className="w-5 h-5" />
+            ) : (
+              <MoonIcon className="w-5 h-5" />
+            )}
+          </button>
+
           {/* language dropdown */}
           <div className="relative">
             <button
@@ -95,17 +113,17 @@ function Navbar() {
               aria-expanded={isLangOpen}
             >
               {uiLang}
-              <ChevronDownIcon className="w-4 h-4 text-white/80" />
+              <ChevronDownIcon className="w-4 h-4 text-gray-500 dark:text-white/80" />
             </button>
 
             {isLangOpen && (
-              <div className="absolute right-0 mt-2 w-28 rounded-xl bg-black/90 border border-white/10 shadow-xl overflow-hidden">
+              <div className="absolute right-0 mt-2 w-28 rounded-xl bg-white dark:bg-black/90 border border-gray-200 dark:border-white/10 shadow-xl overflow-hidden">
                 {["AL", "EN", "DE", "IT"].map((code) => (
                   <button
                     key={code}
                     type="button"
                     onClick={() => handleLangPick(code)}
-                    className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 ${
+                    className={`w-full text-left px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 ${
                       uiLang === code ? "text-vipGold-400" : ""
                     }`}
                   >
@@ -117,28 +135,43 @@ function Navbar() {
           </div>
         </div>
 
-        {/* mobile toggle */}
-        <button
-          type="button"
-          onClick={() => {
-            setIsMenuOpen((prev) => !prev);
-            setIsLangOpen(false);
-          }}
-          className="md:hidden text-white"
-          aria-label="Toggle navigation"
-        >
-          {isMenuOpen ? (
-            <XMarkIcon className="w-8 h-8" />
-          ) : (
-            <Bars3Icon className="w-8 h-8" />
-          )}
-        </button>
+        {/* mobile: theme toggle + hamburger */}
+        <div className="md:hidden flex items-center gap-3">
+          <button
+            type="button"
+            onClick={toggle}
+            className="text-gray-900 dark:text-white"
+            aria-label="Toggle theme"
+          >
+            {dark ? (
+              <SunIcon className="w-6 h-6" />
+            ) : (
+              <MoonIcon className="w-6 h-6" />
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setIsMenuOpen((prev) => !prev);
+              setIsLangOpen(false);
+            }}
+            className="text-gray-900 dark:text-white"
+            aria-label="Toggle navigation"
+          >
+            {isMenuOpen ? (
+              <XMarkIcon className="w-8 h-8" />
+            ) : (
+              <Bars3Icon className="w-8 h-8" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-black/90 border-t border-white/10 px-6 pb-6">
-          <div className="flex flex-col gap-4 pt-4 text-white font-semibold">
+        <div className="md:hidden bg-white/95 dark:bg-black/90 border-t border-gray-200 dark:border-white/10 px-6 pb-6">
+          <div className="flex flex-col gap-4 pt-4 text-gray-900 dark:text-white font-semibold">
             <Link
               to="/"
               onClick={closeMobileMenu}
@@ -171,8 +204,8 @@ function Navbar() {
               {t("nav.rrethNesh")}
             </Link>
 
-            <div className="pt-3 border-t border-white/10 flex items-center gap-3 text-sm font-medium">
-              <span className="text-white/70">{t("nav.languageLabel")}</span>
+            <div className="pt-3 border-t border-gray-200 dark:border-white/10 flex items-center gap-3 text-sm font-medium">
+              <span className="text-gray-500 dark:text-white/70">{t("nav.languageLabel")}</span>
 
               {["AL", "EN", "DE", "IT"].map((code) => (
                 <button
@@ -180,7 +213,7 @@ function Navbar() {
                   type="button"
                   onClick={() => handleLangPick(code)}
                   className={
-                    uiLang === code ? "text-vipGold-400" : "text-white"
+                    uiLang === code ? "text-vipGold-400" : "text-gray-900 dark:text-white"
                   }
                 >
                   {code}

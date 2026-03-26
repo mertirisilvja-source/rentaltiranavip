@@ -316,19 +316,19 @@ export default function ReservationCheckoutPage() {
   };
 
   const input =
-    "h-11 w-full rounded-xl border border-white/10 bg-black/30 px-4 text-white outline-none " +
-    "placeholder:text-white/30 focus:border-[#caa24a]/60";
+    "h-11 w-full rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-black/30 px-4 text-gray-900 dark:text-white outline-none " +
+    "placeholder:text-gray-400 dark:placeholder:text-white/30 focus:border-[#caa24a]/60";
 
   return (
-    <main className="min-h-screen bg-black text-white pt-28 pb-20">
+    <main className="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-white pt-28 pb-20">
       <div className="mx-auto w-full max-w-3xl px-4">
-        <div className="mb-8 rounded-2xl border border-white/10 bg-white/5 p-5">
+        <div className="mb-8 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 p-5">
           <div className="flex items-start justify-between gap-4">
             <div>
               <h1 className="text-2xl font-semibold">
                 {t("reservation.checkout.title")}
               </h1>
-              <p className="mt-2 text-white/60 text-sm">
+              <p className="mt-2 text-gray-500 dark:text-white/60 text-sm">
                 {t("reservation.checkout.subtitle")}
               </p>
             </div>
@@ -336,15 +336,15 @@ export default function ReservationCheckoutPage() {
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white hover:bg-white/10"
+              className="rounded-lg border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 px-3 py-2 text-sm text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-white/10"
             >
               {t("reservation.checkout.back")}
             </button>
           </div>
 
-          <div className="mt-5 grid gap-3 text-sm text-white/80 sm:grid-cols-2">
-            <div className="rounded-xl border border-white/10 bg-black/30 p-4">
-              <p className="text-xs uppercase tracking-widest text-white/40">
+          <div className="mt-5 grid gap-3 text-sm text-gray-700 dark:text-white/80 sm:grid-cols-2">
+            <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-black/30 p-4">
+              <p className="text-xs uppercase tracking-widest text-gray-400 dark:text-white/40">
                 {t("reservation.checkout.car")}
               </p>
               <p className="mt-2 font-semibold">
@@ -354,10 +354,10 @@ export default function ReservationCheckoutPage() {
                     ? `${car.brand} ${car.model}`
                     : t("reservation.checkout.carNotFound")}
               </p>
-              <p className="text-white/50">{car?.year ?? "-"}</p>
+              <p className="text-gray-400 dark:text-white/50">{car?.year ?? "-"}</p>
               {car && (
-                <div className="mt-2 border-t border-white/10 pt-2">
-                  <p className="text-white/50">
+                <div className="mt-2 border-t border-gray-200 dark:border-white/10 pt-2">
+                  <p className="text-gray-400 dark:text-white/50">
                     €{car.pricePerDay} / {t("collections.day")}
                   </p>
                   {(() => {
@@ -372,7 +372,7 @@ export default function ReservationCheckoutPage() {
                     if (days > 7) {
                       return (
                         <div className="mt-2 rounded-lg border border-[#caa24a]/30 bg-[#caa24a]/10 px-3 py-2">
-                          <p className="text-xs font-medium text-white">
+                          <p className="text-xs font-medium text-gray-900 dark:text-white">
                             {days} {t("pricing.days")} — {t("pricing.contactForPrice")}
                           </p>
                           <a
@@ -404,11 +404,11 @@ export default function ReservationCheckoutPage() {
                     return (
                       <>
                         {hasDiscount && (
-                          <p className="mt-1 text-xs font-medium text-green-400">
+                          <p className="mt-1 text-xs font-medium text-green-600 dark:text-green-400">
                             {t("pricing.discounted")} — €{effectivePerDay}/{t("collections.day")}
                           </p>
                         )}
-                        <p className="mt-1 text-xs text-white/60">
+                        <p className="mt-1 text-xs text-gray-500 dark:text-white/60">
                           {days} {days === 1 ? t("collections.day") : t("pricing.days")} × €{effectivePerDay}
                         </p>
                         <p className="text-sm font-semibold text-[#caa24a]">
@@ -420,30 +420,30 @@ export default function ReservationCheckoutPage() {
                 </div>
               )}
               {!!carError && (
-                <p className="mt-2 text-xs text-red-300">{carError}</p>
+                <p className="mt-2 text-xs text-red-600 dark:text-red-300">{carError}</p>
               )}
             </div>
 
-            <div className="rounded-xl border border-white/10 bg-black/30 p-4">
-              <p className="text-xs uppercase tracking-widest text-white/40">
+            <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-black/30 p-4">
+              <p className="text-xs uppercase tracking-widest text-gray-400 dark:text-white/40">
                 {t("reservation.checkout.reservation")}
               </p>
 
               <p className="mt-2">
-                <span className="text-white/50">
+                <span className="text-gray-400 dark:text-white/50">
                   {t("reservation.pickupLocation")}:
                 </span>{" "}
                 {formatLocation(t, finalPickupLocation)}
               </p>
               <p>
-                <span className="text-white/50">
+                <span className="text-gray-400 dark:text-white/50">
                   {t("reservation.dropoffLocation")}:
                 </span>{" "}
                 {formatLocation(t, finalDropoffLocation)}
               </p>
-              <p className="mt-2 text-white/70">
+              <p className="mt-2 text-gray-500 dark:text-white/70">
                 {finalPickupDate || "-"} {finalPickupTime || ""}{" "}
-                <span className="text-white/50">→</span>{" "}
+                <span className="text-gray-400 dark:text-white/50">→</span>{" "}
                 {finalDropoffDate || "-"} {finalDropoffTime || ""}
               </p>
             </div>
@@ -451,17 +451,17 @@ export default function ReservationCheckoutPage() {
         </div>
 
         {!hasReservation && (
-          <div className="mb-8 rounded-2xl border border-white/10 bg-white/5 p-6">
-            <h2 className="text-lg font-semibold text-white">
+          <div className="mb-8 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 p-6">
+            <h2 className="text-lg font-semibold">
               {t("reservation.checkout.pickReservationTitle")}
             </h2>
-            <p className="mt-2 text-sm text-white/60">
+            <p className="mt-2 text-sm text-gray-500 dark:text-white/60">
               {t("reservation.checkout.pickReservationSubtitle")}
             </p>
 
             <div className="mt-6 grid gap-4">
               <div>
-                <label className="mb-2 block text-sm font-semibold text-white/90">
+                <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-white/90">
                   {t("reservation.pickupLocation")}
                 </label>
                 <select
@@ -479,10 +479,10 @@ export default function ReservationCheckoutPage() {
               </div>
 
               <div className="flex items-center justify-between">
-                <label className="text-sm font-semibold text-white/90">
+                <label className="text-sm font-semibold text-gray-700 dark:text-white/90">
                   {t("reservation.dropoffLocation")}
                 </label>
-                <label className="flex items-center gap-2 text-sm text-white/80">
+                <label className="flex items-center gap-2 text-sm text-gray-600 dark:text-white/80">
                   <input
                     type="checkbox"
                     checked={hasDropoffLocation}
@@ -512,7 +512,7 @@ export default function ReservationCheckoutPage() {
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-semibold text-white/90">
+                  <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-white/90">
                     {t("reservation.pickupDate")}
                   </label>
                   <input
@@ -523,7 +523,7 @@ export default function ReservationCheckoutPage() {
                   />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-semibold text-white/90">
+                  <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-white/90">
                     {t("reservation.pickupTime")}
                   </label>
                   <input
@@ -541,7 +541,7 @@ export default function ReservationCheckoutPage() {
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-semibold text-white/90">
+                  <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-white/90">
                     {t("reservation.dropoffDate")}
                   </label>
                   <input
@@ -557,7 +557,7 @@ export default function ReservationCheckoutPage() {
                   />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-semibold text-white/90">
+                  <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-white/90">
                     {t("reservation.dropoffTime")}
                   </label>
                   <input
@@ -573,18 +573,18 @@ export default function ReservationCheckoutPage() {
                 </div>
               </div>
 
-              <p className="text-xs text-white/50">
+              <p className="text-xs text-gray-400 dark:text-white/50">
                 {t("reservation.noteDropoffLimit")}
               </p>
 
               {!isAvailable && !checkingAvailability && (
-                <div className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center text-sm text-red-200">
+                <div className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center text-sm text-red-600 dark:text-red-200">
                   {t("reservation.checkout.carUnavailable", "This car is already booked for the selected dates. Please choose different dates.")}
                 </div>
               )}
 
               {checkingAvailability && (
-                <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-4 text-center text-sm text-white/60">
+                <div className="mt-4 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 p-4 text-center text-sm text-gray-500 dark:text-white/60">
                   {t("reservation.checking", "Checking availability...")}
                 </div>
               )}
@@ -595,8 +595,8 @@ export default function ReservationCheckoutPage() {
                 disabled={!isAvailable || checkingAvailability}
                 className={`mt-2 h-11 w-full rounded-xl font-semibold ${
                   !isAvailable
-                    ? "bg-white/5 text-white/30 cursor-not-allowed"
-                    : "bg-white/10 text-white hover:bg-white/15"
+                    ? "bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-white/30 cursor-not-allowed"
+                    : "bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-white/15"
                 }`}
               >
                 {t("reservation.checkout.saveReservation")}
@@ -607,11 +607,11 @@ export default function ReservationCheckoutPage() {
 
         <form
           onSubmit={onSubmit}
-          className="rounded-2xl border border-white/10 bg-white/5 p-6"
+          className="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 p-6"
         >
           <div className="space-y-5">
             <div>
-              <label className="mb-2 block text-sm font-semibold text-white/90">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-white/90">
                 {t("reservation.checkout.fullName")}
               </label>
               <input
@@ -624,7 +624,7 @@ export default function ReservationCheckoutPage() {
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-white/90">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-white/90">
                 {t("reservation.checkout.email")}
               </label>
               <input
@@ -638,7 +638,7 @@ export default function ReservationCheckoutPage() {
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-white/90">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-white/90">
                 {t("reservation.checkout.phone")}
               </label>
               <input
@@ -659,19 +659,19 @@ export default function ReservationCheckoutPage() {
                   <span className="text-[#caa24a]">*</span>
                 </p>
               </div>
-              <p className="mt-2 text-sm text-white/60">
+              <p className="mt-2 text-sm text-gray-500 dark:text-white/60">
                 {t("reservation.checkout.documentsHint")}
               </p>
 
               <div className="mt-5 space-y-4">
                 <div>
-                  <p className="mb-2 text-sm font-semibold text-white/80">
+                  <p className="mb-2 text-sm font-semibold text-gray-600 dark:text-white/80">
                     {t("reservation.checkout.idDocument")}
                   </p>
                   <label className={`flex min-h-[3rem] w-full cursor-pointer items-center justify-center gap-3 rounded-xl border border-dashed px-3 py-2 text-sm transition ${
                     idDocFiles.length > 0
-                      ? "border-green-500/40 bg-green-500/5 text-green-300"
-                      : "border-white/20 bg-black/20 text-white/80 hover:bg-black/30"
+                      ? "border-green-500/40 bg-green-500/5 text-green-700 dark:text-green-300"
+                      : "border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 text-gray-600 dark:text-white/80 hover:bg-gray-100 dark:hover:bg-black/30"
                   }`}>
                     {idDocFiles.length > 0
                       ? `✓ ${idDocFiles.map(f => f.name).join(", ")}`
@@ -687,13 +687,13 @@ export default function ReservationCheckoutPage() {
                 </div>
 
                 <div>
-                  <p className="mb-2 text-sm font-semibold text-white/80">
+                  <p className="mb-2 text-sm font-semibold text-gray-600 dark:text-white/80">
                     {t("reservation.checkout.driverLicense")}
                   </p>
                   <label className={`flex min-h-[3rem] w-full cursor-pointer items-center justify-center gap-3 rounded-xl border border-dashed px-3 py-2 text-sm transition ${
                     licenseFiles.length > 0
-                      ? "border-green-500/40 bg-green-500/5 text-green-300"
-                      : "border-white/20 bg-black/20 text-white/80 hover:bg-black/30"
+                      ? "border-green-500/40 bg-green-500/5 text-green-700 dark:text-green-300"
+                      : "border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 text-gray-600 dark:text-white/80 hover:bg-gray-100 dark:hover:bg-black/30"
                   }`}>
                     {licenseFiles.length > 0
                       ? `✓ ${licenseFiles.map(f => f.name).join(", ")}`
@@ -711,39 +711,39 @@ export default function ReservationCheckoutPage() {
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-white/90">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-white/90">
                 {t("reservation.checkout.optionalMessage")}
               </label>
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 rows={4}
-                className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-white/30 focus:border-[#caa24a]/60"
+                className="w-full rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-black/30 px-4 py-3 text-gray-900 dark:text-white outline-none placeholder:text-gray-400 dark:placeholder:text-white/30 focus:border-[#caa24a]/60"
                 placeholder={t("reservation.checkout.optionalMessagePh")}
               />
             </div>
 
             {!isAvailable && !checkingAvailability && (
-              <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+              <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-600 dark:text-red-200">
                 {t("reservation.checkout.carUnavailable", "This car is already booked for the selected dates. Please choose different dates.")}
               </div>
             )}
 
             {checkingAvailability && (
-              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/60">
+              <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 px-4 py-3 text-sm text-gray-500 dark:text-white/60">
                 {t("reservation.checking", "Checking availability...")}
               </div>
             )}
 
             {submitError && (
-              <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+              <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-600 dark:text-red-300">
                 {submitError}
               </div>
             )}
 
             {isTooLong ? (
               <div className="rounded-xl border border-[#caa24a]/30 bg-[#caa24a]/10 p-4 text-center">
-                <p className="text-sm font-medium text-white">{t("pricing.contactForPrice")}</p>
+                <p className="text-sm font-medium">{t("pricing.contactForPrice")}</p>
                 <a
                   href="https://wa.me/355685845850"
                   target="_blank"
@@ -752,7 +752,7 @@ export default function ReservationCheckoutPage() {
                 >
                   {t("pricing.contactWhatsApp")}
                 </a>
-                <p className="mt-2 text-xs text-white/50">{t("pricing.longRentalNote")}</p>
+                <p className="mt-2 text-xs text-gray-400 dark:text-white/50">{t("pricing.longRentalNote")}</p>
               </div>
             ) : (
               <button
@@ -761,7 +761,7 @@ export default function ReservationCheckoutPage() {
                 className={`h-12 w-full rounded-xl font-semibold transition ${
                   canSubmit && !submitting
                     ? "bg-[#caa24a] text-black hover:brightness-110"
-                    : "bg-white/15 text-white/40 cursor-not-allowed"
+                    : "bg-gray-200 dark:bg-white/15 text-gray-400 dark:text-white/40 cursor-not-allowed"
                 }`}
               >
                 {submitting
@@ -772,7 +772,7 @@ export default function ReservationCheckoutPage() {
               </button>
             )}
 
-            <div className="flex items-center justify-center gap-2 text-xs text-white/50">
+            <div className="flex items-center justify-center gap-2 text-xs text-gray-400 dark:text-white/50">
               <span>🔒</span>
               <span>{t("reservation.checkout.secureNote")}</span>
             </div>

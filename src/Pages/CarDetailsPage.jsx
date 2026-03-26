@@ -108,9 +108,9 @@ export default function CarDetailsPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen overflow-x-hidden bg-black px-4 pt-24 text-white">
+      <main className="min-h-screen overflow-x-hidden bg-gray-50 dark:bg-black px-4 pt-24 text-gray-900 dark:text-white">
         <div className="mx-auto max-w-3xl">
-          <p className="text-white/70">Loading car...</p>
+          <p className="text-gray-500 dark:text-white/70">Loading car...</p>
         </div>
       </main>
     );
@@ -118,9 +118,9 @@ export default function CarDetailsPage() {
 
   if (error) {
     return (
-      <main className="min-h-screen overflow-x-hidden bg-black px-4 pt-24 text-white">
+      <main className="min-h-screen overflow-x-hidden bg-gray-50 dark:bg-black px-4 pt-24 text-gray-900 dark:text-white">
         <div className="mx-auto max-w-3xl">
-          <p className="text-red-300">{error}</p>
+          <p className="text-red-600 dark:text-red-300">{error}</p>
         </div>
       </main>
     );
@@ -128,42 +128,42 @@ export default function CarDetailsPage() {
 
   if (!car) {
     return (
-      <main className="min-h-screen overflow-x-hidden bg-black px-4 pt-24 text-white">
+      <main className="min-h-screen overflow-x-hidden bg-gray-50 dark:bg-black px-4 pt-24 text-gray-900 dark:text-white">
         <div className="mx-auto max-w-3xl">
-          <p className="text-white/70">Makina nuk u gjet.</p>
+          <p className="text-gray-500 dark:text-white/70">Makina nuk u gjet.</p>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-black pt-20 pb-10 text-white sm:pt-24 sm:pb-16">
+    <main className="min-h-screen overflow-x-hidden bg-gray-50 dark:bg-black pt-20 pb-10 text-gray-900 dark:text-white sm:pt-24 sm:pb-16">
       <div className="mx-auto w-full max-w-7xl px-4">
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="mb-4 flex items-center gap-1.5 text-sm text-white/50 hover:text-white/80 transition"
+          className="mb-4 flex items-center gap-1.5 text-sm text-gray-400 dark:text-white/50 hover:text-gray-700 dark:hover:text-white/80 transition"
         >
           <span>&larr;</span> {t("reservation.checkout.back")}
         </button>
 
-        <div className="mb-5 rounded-2xl border border-white/10 bg-white/5 p-3 text-xs text-white/80 sm:mb-8 sm:p-4 sm:text-sm">
+        <div className="mb-5 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 p-3 text-xs text-gray-700 dark:text-white/80 sm:mb-8 sm:p-4 sm:text-sm">
           <div className="flex min-w-0 flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
             <div className="min-w-0 break-words leading-relaxed">
-              <span className="text-white/50">
+              <span className="text-gray-400 dark:text-white/50">
                 {t("reservation.pickupLocation")}:
               </span>{" "}
               {formatLocation(t, pickupLocation)}
-              <span className="mx-2 text-white/50">•</span>
-              <span className="text-white/50">
+              <span className="mx-2 text-gray-400 dark:text-white/50">•</span>
+              <span className="text-gray-400 dark:text-white/50">
                 {t("reservation.dropoffLocation")}:
               </span>{" "}
               {formatLocation(t, dropoffLocation)}
             </div>
 
-            <div className="min-w-0 break-words leading-relaxed text-white/70">
+            <div className="min-w-0 break-words leading-relaxed text-gray-500 dark:text-white/70">
               {pickupDate || "-"} {pickupTime || ""}
-              <span className="mx-2 text-white/50">→</span>
+              <span className="mx-2 text-gray-400 dark:text-white/50">→</span>
               {dropoffDate || "-"} {dropoffTime || ""}
             </div>
           </div>
@@ -171,17 +171,17 @@ export default function CarDetailsPage() {
 
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-10">
           <div className="order-2 min-w-0 lg:order-1">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-6">
+            <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 p-4 sm:p-6">
               <h1 className="break-words text-2xl font-semibold leading-tight sm:text-4xl">
                 {car.brand} {car.model}
               </h1>
 
-              <p className="mt-2 text-sm text-white/60 sm:text-base">
+              <p className="mt-2 text-sm text-gray-500 dark:text-white/60 sm:text-base">
                 {car.year}
               </p>
 
               <div className="mt-5">
-                <p className="text-[11px] uppercase tracking-widest text-white/40 sm:text-xs">
+                <p className="text-[11px] uppercase tracking-widest text-gray-400 dark:text-white/40 sm:text-xs">
                   {t("collections.pricePerDay")}
                 </p>
                 <p className="mt-2 text-3xl font-semibold text-[#caa24a] sm:text-4xl">
@@ -196,7 +196,7 @@ export default function CarDetailsPage() {
                   if (days > 7) {
                     return (
                       <div className="mt-2 rounded-lg border border-[#caa24a]/30 bg-[#caa24a]/10 px-3 py-3">
-                        <p className="text-sm font-medium text-white">
+                        <p className="text-sm font-medium text-gray-900 dark:text-white">
                           {days} {t("pricing.days")} — {t("pricing.contactForPrice")}
                         </p>
                         <a
@@ -226,16 +226,16 @@ export default function CarDetailsPage() {
                   const hasDiscount = effectivePerDay < car.pricePerDay;
 
                   return (
-                    <div className="mt-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2">
+                    <div className="mt-2 rounded-lg border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 px-3 py-2">
                       {hasDiscount && (
-                        <p className="mb-1 text-xs font-medium text-green-400">
+                        <p className="mb-1 text-xs font-medium text-green-600 dark:text-green-400">
                           {t("pricing.discounted")} — €{effectivePerDay}/{t("collections.day")}
                         </p>
                       )}
-                      <p className="text-sm text-white/60">
+                      <p className="text-sm text-gray-500 dark:text-white/60">
                         {days} {days === 1 ? t("collections.day") : t("pricing.days")} × €{effectivePerDay}
                       </p>
-                      <p className="text-lg font-semibold text-white">
+                      <p className="text-lg font-semibold text-gray-900 dark:text-white">
                         {t("pricing.total")}: €{total}
                       </p>
                     </div>
@@ -243,7 +243,7 @@ export default function CarDetailsPage() {
                 })()}
               </div>
 
-              <div className="mt-5 space-y-3 text-sm text-white/80 sm:mt-6">
+              <div className="mt-5 space-y-3 text-sm text-gray-600 dark:text-white/80 sm:mt-6">
                 <div className="leading-relaxed">
                   ⛽ {t("specs.fuel")}:{" "}
                   {car.fuelKey ? t(car.fuelKey) : car.fuelType || "-"}
@@ -258,13 +258,13 @@ export default function CarDetailsPage() {
               </div>
 
               {!isAvailable && (
-                <div className="mt-6 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center text-sm text-red-200 sm:mt-7">
+                <div className="mt-6 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center text-sm text-red-600 dark:text-red-200 sm:mt-7">
                   {t("reservation.carBooked")}
                 </div>
               )}
 
               {pickupDate && dropoffDate && Math.ceil((new Date(dropoffDate) - new Date(pickupDate)) / (1000 * 60 * 60 * 24)) > 7 ? (
-                <p className="mt-4 text-center text-sm text-white/50">
+                <p className="mt-4 text-center text-sm text-gray-400 dark:text-white/50">
                   {t("pricing.longRentalNote")}
                 </p>
               ) : (
@@ -274,7 +274,7 @@ export default function CarDetailsPage() {
                   disabled={!isAvailable || checkingAvailability}
                   className={`mt-4 h-12 w-full rounded-xl px-4 text-sm font-semibold transition active:scale-[0.98] sm:text-base ${
                     !isAvailable
-                      ? "cursor-not-allowed bg-white/10 text-white/40"
+                      ? "cursor-not-allowed bg-gray-200 dark:bg-white/10 text-gray-400 dark:text-white/40"
                       : "bg-[#caa24a] text-black hover:brightness-110"
                   }`}
                 >
@@ -286,14 +286,14 @@ export default function CarDetailsPage() {
                 </button>
               )}
 
-              <p className="mt-3 break-words text-xs leading-relaxed text-white/40">
+              <p className="mt-3 break-words text-xs leading-relaxed text-gray-400 dark:text-white/40">
                 {t("reservation.noteDifferentTime")}
               </p>
             </div>
           </div>
 
           <div className="order-1 min-w-0 lg:order-2">
-            <div className="overflow-hidden rounded-2xl border border-white/10 bg-black">
+            <div className="overflow-hidden rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-black">
               <img
                 src={gallery[activeImg] || "https://via.placeholder.com/1200x800?text=No+Image"}
                 alt={`${car.brand} ${car.model}`}
@@ -311,7 +311,7 @@ export default function CarDetailsPage() {
                     className={`h-14 w-20 flex-shrink-0 overflow-hidden rounded-xl border transition sm:h-20 sm:w-28 ${
                       idx === activeImg
                         ? "border-[#caa24a]"
-                        : "border-white/10 hover:border-white/30"
+                        : "border-gray-200 dark:border-white/10 hover:border-gray-400 dark:hover:border-white/30"
                     }`}
                     title={t("collections.photoTitle", { n: idx + 1 })}
                   >

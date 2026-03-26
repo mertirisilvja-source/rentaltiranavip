@@ -20,21 +20,21 @@ function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="relative mt-24 border-t border-white/10">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-black/80" />
+    <footer className="relative mt-24 border-t border-gray-200 dark:border-white/10">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-gray-100/80 dark:to-black/80" />
 
-      <div className="max-w-7xl mx-auto px-6 py-16 text-white">
+      <div className="max-w-7xl mx-auto px-6 py-16 text-gray-900 dark:text-white">
         <div className="grid md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <div className="text-lg tracking-[0.25em] uppercase text-white/90">
+            <div className="text-lg tracking-[0.25em] uppercase text-gray-800 dark:text-white/90">
               Rental Tirana
             </div>
             <div className="text-sm tracking-[0.35em] uppercase text-vipGold-400 font-semibold">
               VIP
             </div>
 
-            <p className="mt-4 text-white/70 leading-relaxed">
+            <p className="mt-4 text-gray-600 dark:text-white/70 leading-relaxed">
               {t("footer.description")}
             </p>
           </div>
@@ -45,29 +45,29 @@ function Footer() {
               {t("footer.navigation")}
             </div>
 
-            <div className="flex flex-col gap-3 text-white/80">
+            <div className="flex flex-col gap-3 text-gray-600 dark:text-white/80">
               {/* Rezervo jumps to reservation section on Home */}
-              <Link to="/#reserve" className="hover:text-white transition">
+              <Link to="/#reserve" className="hover:text-gray-900 dark:hover:text-white transition">
                 {t("footer.links.reserve")}
               </Link>
 
-              <Link to="/cars" className="hover:text-white transition">
+              <Link to="/cars" className="hover:text-gray-900 dark:hover:text-white transition">
                 {t("footer.links.collection")}
               </Link>
 
-              <Link to="/about" className="hover:text-white transition">
+              <Link to="/about" className="hover:text-gray-900 dark:hover:text-white transition">
                 {t("footer.links.about")}
               </Link>
 
-              <Link to="/contact" className="hover:text-white transition">
+              <Link to="/contact" className="hover:text-gray-900 dark:hover:text-white transition">
                 {t("footer.links.contact")}
               </Link>
 
-              <Link to="/terms" className="hover:text-white transition">
+              <Link to="/terms" className="hover:text-gray-900 dark:hover:text-white transition">
                 {t("footer.links.terms")}
               </Link>
 
-              <Link to="/privacy" className="hover:text-white transition">
+              <Link to="/privacy" className="hover:text-gray-900 dark:hover:text-white transition">
                 {t("footer.links.privacy")}
               </Link>
             </div>
@@ -82,7 +82,7 @@ function Footer() {
             <div className="space-y-3">
               <a
                 href="tel:+355685845850"
-                className="flex items-center gap-3 text-white/80 hover:text-white transition"
+                className="flex items-center gap-3 text-gray-600 dark:text-white/80 hover:text-gray-900 dark:hover:text-white transition"
               >
                 <PhoneIcon className="w-5 h-5" />
                 +355 68 584 5850
@@ -92,13 +92,13 @@ function Footer() {
                 href="https://instagram.com/rentaltiranavip"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-3 text-white/80 hover:text-white transition"
+                className="flex items-center gap-3 text-gray-600 dark:text-white/80 hover:text-gray-900 dark:hover:text-white transition"
               >
                 <InstagramIcon />
                 @rentaltiranavip
               </a>
 
-              <div className="text-white/70 text-sm">
+              <div className="text-gray-500 dark:text-white/70 text-sm">
                 {t("footer.location")}
               </div>
             </div>
@@ -106,7 +106,7 @@ function Footer() {
         </div>
 
         {/* bottom */}
-        <div className="mt-14 pt-8 border-t border-white/10 text-center text-sm text-white/50">
+        <div className="mt-14 pt-8 border-t border-gray-200 dark:border-white/10 text-center text-sm text-gray-500 dark:text-white/50">
           © {new Date().getFullYear()} Rental Tirana VIP. {t("footer.rights")}
         </div>
       </div>

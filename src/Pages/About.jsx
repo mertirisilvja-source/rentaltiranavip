@@ -11,7 +11,7 @@ function About() {
   ];
 
   return (
-    <section className="min-h-screen text-white pt-32 pb-20 px-6">
+    <section className="min-h-screen text-gray-900 dark:text-white pt-32 pb-20 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="max-w-3xl">
@@ -21,7 +21,7 @@ function About() {
               {t("about.titleHighlight")}
             </span>
           </h1>
-          <p className="mt-5 text-white/80 leading-relaxed text-lg">
+          <p className="mt-5 text-gray-600 dark:text-white/80 leading-relaxed text-lg">
             {t("about.p1")}
           </p>
           <p className="mt-3 text-vipGold-400 leading-relaxed">
@@ -34,55 +34,55 @@ function About() {
           {stats.map((s) => (
             <div
               key={s.v}
-              className="rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur"
+              className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 p-5 backdrop-blur"
             >
               <div className="text-2xl font-semibold text-vipGold-400">
                 {s.k}
               </div>
-              <div className="text-sm text-white/75 mt-1">{s.v}</div>
+              <div className="text-sm text-gray-500 dark:text-white/75 mt-1">{s.v}</div>
             </div>
           ))}
         </div>
 
         {/* Why us */}
         <div className="grid md:grid-cols-3 gap-6 mt-12">
-          <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+          <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 p-6 backdrop-blur">
             <h3 className="text-vipGold-400 font-semibold text-lg">
               {t("about.why.title1")}
             </h3>
-            <p className="text-white/70 mt-2 leading-relaxed">
+            <p className="text-gray-600 dark:text-white/70 mt-2 leading-relaxed">
               {t("about.why.desc1")}
             </p>
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+          <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 p-6 backdrop-blur">
             <h3 className="text-vipGold-400 font-semibold text-lg">
               {t("about.why.title2")}
             </h3>
-            <p className="text-white/70 mt-2 leading-relaxed">
+            <p className="text-gray-600 dark:text-white/70 mt-2 leading-relaxed">
               {t("about.why.desc2")}
             </p>
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+          <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 p-6 backdrop-blur">
             <h3 className="text-vipGold-400 font-semibold text-lg">
               {t("about.why.title3")}
             </h3>
-            <p className="text-white/70 mt-2 leading-relaxed">
+            <p className="text-gray-600 dark:text-white/70 mt-2 leading-relaxed">
               {t("about.why.desc3")}
             </p>
-            <p className="text-white/60 mt-2 text-sm leading-relaxed">
+            <p className="text-gray-500 dark:text-white/60 mt-2 text-sm leading-relaxed">
               {t("about.why.dropoffNote")}
             </p>
           </div>
         </div>
 
         {/* CTA */}
-        <div className="mt-14 rounded-2xl border border-white/10 bg-gradient-to-r from-white/5 to-transparent p-8">
+        <div className="mt-14 rounded-2xl border border-gray-200 dark:border-white/10 bg-gradient-to-r from-gray-100 dark:from-white/5 to-transparent p-8">
           <h2 className="text-2xl md:text-3xl font-semibold">
             {t("about.cta.title")}
           </h2>
-          <p className="text-white/75 mt-2">{t("about.cta.subtitle")}</p>
+          <p className="text-gray-500 dark:text-white/75 mt-2">{t("about.cta.subtitle")}</p>
 
           <button
             onClick={() => window.location.assign("/cars")}

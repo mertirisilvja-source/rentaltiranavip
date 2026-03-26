@@ -71,20 +71,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="scroll-mt-28 w-full bg-black py-20">
+      <section id="about" className="scroll-mt-28 w-full bg-gray-50 dark:bg-black py-20">
         <div className="mx-auto w-full max-w-7xl px-4">
           <About />
         </div>
       </section>
 
-      <section id="cars" className="scroll-mt-28 w-full bg-black py-20">
+      <section id="cars" className="scroll-mt-28 w-full bg-gray-50 dark:bg-black py-20">
         <div className="mx-auto w-full max-w-7xl px-4">
           {loadingCars ? (
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-white/70">
+            <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 p-6 text-gray-600 dark:text-white/70">
               Loading cars...
             </div>
           ) : carsError ? (
-            <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-6 text-red-200">
+            <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-6 text-red-600 dark:text-red-200">
               {carsError}
             </div>
           ) : (
