@@ -79,10 +79,10 @@ export default function ReservationCheckoutPage() {
   );
 
   const [pickupDate, setPickupDate] = useState(pickupDateQ || toDate(now));
-  const [pickupTime, setPickupTime] = useState(pickupTimeQ || toTime(now));
+  const [pickupTime, setPickupTime] = useState(pickupTimeQ || "10:00");
 
   const [dropoffDate, setDropoffDate] = useState(dropoffDateQ || toDate(tomorrow));
-  const [dropoffTime, setDropoffTime] = useState(dropoffTimeQ || toTime(now));
+  const [dropoffTime, setDropoffTime] = useState(dropoffTimeQ || "10:00");
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -529,7 +529,11 @@ export default function ReservationCheckoutPage() {
                   <input
                     type="time"
                     value={pickupTime}
-                    onChange={(e) => setPickupTime(e.target.value)}
+                    min="10:00"
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setPickupTime(val < "10:00" ? "10:00" : val);
+                    }}
                     className={input}
                   />
                 </div>
@@ -559,11 +563,19 @@ export default function ReservationCheckoutPage() {
                   <input
                     type="time"
                     value={dropoffTime}
-                    onChange={(e) => setDropoffTime(e.target.value)}
+                    max="10:00"
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setDropoffTime(val > "10:00" ? "10:00" : val);
+                    }}
                     className={input}
                   />
                 </div>
               </div>
+
+              <p className="text-xs text-white/50">
+                {t("reservation.noteDropoffLimit")}
+              </p>
 
               {!isAvailable && !checkingAvailability && (
                 <div className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center text-sm text-red-200">
