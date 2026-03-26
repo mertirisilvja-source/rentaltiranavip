@@ -71,6 +71,9 @@ function About() {
             <p className="text-white/70 mt-2 leading-relaxed">
               {t("about.why.desc3")}
             </p>
+            <p className="text-white/60 mt-2 text-sm leading-relaxed">
+              {t("about.why.dropoffNote")}
+            </p>
           </div>
         </div>
 

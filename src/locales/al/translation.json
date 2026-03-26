@@ -61,6 +61,7 @@
       "office": "Zyra e Rental Tirana VIP, Tiranë",
       "airport": "Aeroporti Nënë Tereza, Tiranë"
     },
+    "noteDropoffLimit": "Dita e qirasë fillon në orën 10:00. Ora e dorëzimit nuk mund të jetë më vonë se ora 10:00. Nëse keni nevojë për një orar më të vonshëm dorëzimi, ju lutem kontaktoni stafin tonë.",
     "noteDifferentTime": "Nëse ora e dorëzimit nuk është e njëjtë me të marrjes, atëherë kryhet një pagesë ekstra.",
     "carBooked": "Kjo makinë është e rezervuar për datat e zgjedhura. Ju lutem zgjidhni data të tjera.",
     "checking": "Duke kontrolluar disponueshmërinë...",
@@ -147,7 +148,8 @@
       "desc2": "Dorëzim në zyrë ose aeroport, sipas nevojës edhe lokacione të tjera.",
 
       "title3": "Pagesa Transparente",
-      "desc3": "Çmime të qarta pa kosto të fshehura. Për ndryshim ore dorëzimi, zbatohet tarifë ekstra sipas rregullave."
+      "desc3": "Çmime të qarta pa kosto të fshehura. Për ndryshim ore dorëzimi, zbatohet tarifë ekstra sipas rregullave.",
+      "dropoffNote": "Dita e qirasë fillon në orën 10:00. Ora e dorëzimit nuk mund të jetë më vonë se ora 10:00. Nëse keni nevojë për një orar më të vonshëm, kontaktoni stafin tonë."
     },
 
     "cta": {

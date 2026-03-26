@@ -61,6 +61,7 @@
       "office": "Rental Tirana VIP Office, Tirana",
       "airport": "Tirana International Airport (Nënë Tereza)"
     },
+    "noteDropoffLimit": "The rental day starts at 10:00 AM. The drop-off time cannot be later than 10:00 AM. If you need a later drop-off time, please contact our staff.",
     "noteDifferentTime": "If the drop-off time is not the same as the pick-up time, an extra fee applies.",
     "carBooked": "This car is already booked for the selected dates. Please choose different dates.",
     "checking": "Checking availability...",
@@ -147,7 +148,8 @@
       "desc2": "Delivery at the office or airport, and other locations when needed.",
 
       "title3": "Transparent Pricing",
-      "desc3": "Clear prices with no hidden costs. If the drop-off time changes, an extra fee applies according to policy."
+      "desc3": "Clear prices with no hidden costs. If the drop-off time changes, an extra fee applies according to policy.",
+      "dropoffNote": "The rental day starts at 10:00 AM. The drop-off time cannot be later than 10:00 AM. If you need a later drop-off time, please contact our staff."
     },
 
     "cta": {

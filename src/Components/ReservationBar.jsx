@@ -31,10 +31,10 @@ export default function ReservationBar() {
   const [pickupTime, setPickupTime] = useState(toTime(now));
 
   const [dropoffDate, setDropoffDate] = useState(toDate(tomorrow));
-  const [dropoffTime, setDropoffTime] = useState(toTime(now));
+  const [dropoffTime, setDropoffTime] = useState("10:00");
 
   useEffect(() => {
-    setDropoffTime(pickupTime);
+    setDropoffTime("10:00");
   }, [pickupTime]);
 
   function nextDay(dateStr) {
@@ -220,13 +220,20 @@ export default function ReservationBar() {
               <input
                 type="time"
                 value={dropoffTime}
-                onChange={(e) => setDropoffTime(e.target.value)}
+                max="10:00"
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setDropoffTime(val > "10:00" ? "10:00" : val);
+                }}
                 className={input}
               />
             </div>
 
-            {/* note */}
-            <div className="col-span-12 mt-3">
+            {/* notes */}
+            <div className="col-span-12 mt-3 space-y-1">
+              <p className="text-xs text-white/70">
+                {t("reservation.noteDropoffLimit")}
+              </p>
               <p className="text-xs text-white/70">
                 {t("reservation.noteDifferentTime")}
               </p>
@@ -344,15 +351,24 @@ export default function ReservationBar() {
               <input
                 type="time"
                 value={dropoffTime}
-                onChange={(e) => setDropoffTime(e.target.value)}
+                max="10:00"
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setDropoffTime(val > "10:00" ? "10:00" : val);
+                }}
                 className={input}
               />
             </div>
           </div>
 
-          <p className="text-xs text-white/70">
-            {t("reservation.noteDifferentTime")}
-          </p>
+          <div className="space-y-1">
+            <p className="text-xs text-white/70">
+              {t("reservation.noteDropoffLimit")}
+            </p>
+            <p className="text-xs text-white/70">
+              {t("reservation.noteDifferentTime")}
+            </p>
+          </div>
 
           <button
             type="submit"

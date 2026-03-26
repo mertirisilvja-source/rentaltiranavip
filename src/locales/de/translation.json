@@ -63,6 +63,7 @@
       "airport": "Flughafen Tirana (Nënë Tereza)"
     },
 
+    "noteDropoffLimit": "Der Miettag beginnt um 10:00 Uhr. Die Rückgabezeit darf nicht später als 10:00 Uhr sein. Wenn Sie eine spätere Rückgabezeit benötigen, kontaktieren Sie bitte unser Team.",
     "noteDifferentTime": "Wenn die Rückgabezeit nicht mit der Abholzeit übereinstimmt, fällt eine zusätzliche Gebühr an.",
     "carBooked": "Dieses Fahrzeug ist für die ausgewählten Daten bereits gebucht. Bitte wählen Sie andere Daten.",
     "checking": "Verfügbarkeit wird geprüft...",
@@ -151,7 +152,8 @@
       "desc2": "Zustellung im Büro oder am Flughafen – bei Bedarf auch an anderen Orten.",
 
       "title3": "Transparente Preise",
-      "desc3": "Klare Preise ohne versteckte Kosten. Bei Änderung der Rückgabezeit wird gemäß Richtlinien eine Zusatzgebühr berechnet."
+      "desc3": "Klare Preise ohne versteckte Kosten. Bei Änderung der Rückgabezeit wird gemäß Richtlinien eine Zusatzgebühr berechnet.",
+      "dropoffNote": "Der Miettag beginnt um 10:00 Uhr. Die Rückgabezeit darf nicht später als 10:00 Uhr sein. Wenn Sie eine spätere Rückgabezeit benötigen, kontaktieren Sie bitte unser Team."
     },
 
     "cta": {
