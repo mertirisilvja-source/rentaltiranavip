@@ -13,6 +13,7 @@ import {
   updateReservationNotes,
   deleteReservation,
   createReservation,
+  uploadReservationDocument,
   fetchReservationDocuments,
   getDocumentDownloadUrl,
 } from "../services/adminApi";
@@ -831,9 +832,13 @@ function ReservationsTab({ token }) {
     pickupLocation: "zyra",
     dropoffLocation: "zyra",
     startDate: "",
+    startTime: "",
     endDate: "",
+    endTime: "",
     notes: "",
   };
+  const [adminIdDocFiles, setAdminIdDocFiles] = useState([]);
+  const [adminLicenseFiles, setAdminLicenseFiles] = useState([]);
   const [bookingForm, setBookingForm] = useState(emptyBooking);
   const [bookingSaving, setBookingSaving] = useState(false);
 
@@ -968,19 +973,37 @@ function ReservationsTab({ token }) {
     e.preventDefault();
     setBookingSaving(true);
     try {
-      await createReservation({
+      const startTime = bookingForm.startTime || "00:00";
+      const endTime = bookingForm.endTime || "00:00";
+
+      const reservation = await createReservation({
         carId: selectedCarId,
         fullName: bookingForm.fullName,
-        email: bookingForm.email,
+        email: bookingForm.email || null,
         phone: bookingForm.phone,
         pickupLocation: bookingForm.pickupLocation,
         dropoffLocation: bookingForm.dropoffLocation,
-        startDateUtc: `${bookingForm.startDate}T00:00:00Z`,
-        endDateUtc: `${bookingForm.endDate}T00:00:00Z`,
+        startDateUtc: `${bookingForm.startDate}T${startTime}:00Z`,
+        endDateUtc: `${bookingForm.endDate}T${endTime}:00Z`,
         notes: bookingForm.notes || null,
-      });
+      }, token);
+
+      // Upload documents if provided
+      if (reservation?.id) {
+        const uploads = [];
+        if (adminIdDocFiles.length > 0)
+          uploads.push(uploadReservationDocument(reservation.id, "id_document", adminIdDocFiles));
+        if (adminLicenseFiles.length > 0)
+          uploads.push(uploadReservationDocument(reservation.id, "driver_license", adminLicenseFiles));
+        if (uploads.length > 0) {
+          try { await Promise.all(uploads); } catch (err) { console.warn("Document upload failed:", err); }
+        }
+      }
+
       setShowBooking(false);
       setBookingForm(emptyBooking);
+      setAdminIdDocFiles([]);
+      setAdminLicenseFiles([]);
       await load();
     } catch (err) {
       if (!handle401(err)) alert(err.message);
@@ -1238,7 +1261,7 @@ function ReservationsTab({ token }) {
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs text-white/50">Email</label>
+                <label className="mb-1 block text-xs text-white/50">Email (optional)</label>
                 <input
                   className={input}
                   type="email"
@@ -1246,7 +1269,6 @@ function ReservationsTab({ token }) {
                   onChange={(e) =>
                     setBookingForm({ ...bookingForm, email: e.target.value })
                   }
-                  required
                 />
               </div>
               <div>
@@ -1299,6 +1321,17 @@ function ReservationsTab({ token }) {
                 />
               </div>
               <div>
+                <label className="mb-1 block text-xs text-white/50">Pickup Time (optional)</label>
+                <input
+                  className={input}
+                  type="time"
+                  value={bookingForm.startTime}
+                  onChange={(e) =>
+                    setBookingForm({ ...bookingForm, startTime: e.target.value })
+                  }
+                />
+              </div>
+              <div>
                 <label className="mb-1 block text-xs text-white/50">End Date</label>
                 <input
                   className={input}
@@ -1311,6 +1344,17 @@ function ReservationsTab({ token }) {
                 />
               </div>
               <div>
+                <label className="mb-1 block text-xs text-white/50">Dropoff Time (optional)</label>
+                <input
+                  className={input}
+                  type="time"
+                  value={bookingForm.endTime}
+                  onChange={(e) =>
+                    setBookingForm({ ...bookingForm, endTime: e.target.value })
+                  }
+                />
+              </div>
+              <div>
                 <label className="mb-1 block text-xs text-white/50">Notes (optional)</label>
                 <input
                   className={input}
@@ -1319,6 +1363,48 @@ function ReservationsTab({ token }) {
                     setBookingForm({ ...bookingForm, notes: e.target.value })
                   }
                 />
+              </div>
+            </div>
+
+            {/* Document uploads */}
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="mb-1 block text-xs text-white/50">ID Document (optional)</label>
+                <label className={`flex h-10 w-full cursor-pointer items-center rounded-lg border px-3 text-sm transition ${
+                  adminIdDocFiles.length > 0
+                    ? "border-green-500/40 bg-green-500/5 text-green-300"
+                    : "border-white/10 bg-black/30 text-white/50 hover:bg-black/40"
+                }`}>
+                  {adminIdDocFiles.length > 0
+                    ? `✓ ${adminIdDocFiles.map(f => f.name).join(", ")}`
+                    : "Upload ID document..."}
+                  <input
+                    type="file"
+                    className="hidden"
+                    accept="image/*,.pdf"
+                    multiple
+                    onChange={(e) => setAdminIdDocFiles(Array.from(e.target.files || []))}
+                  />
+                </label>
+              </div>
+              <div>
+                <label className="mb-1 block text-xs text-white/50">Driver's License (optional)</label>
+                <label className={`flex h-10 w-full cursor-pointer items-center rounded-lg border px-3 text-sm transition ${
+                  adminLicenseFiles.length > 0
+                    ? "border-green-500/40 bg-green-500/5 text-green-300"
+                    : "border-white/10 bg-black/30 text-white/50 hover:bg-black/40"
+                }`}>
+                  {adminLicenseFiles.length > 0
+                    ? `✓ ${adminLicenseFiles.map(f => f.name).join(", ")}`
+                    : "Upload driver's license..."}
+                  <input
+                    type="file"
+                    className="hidden"
+                    accept="image/*,.pdf"
+                    multiple
+                    onChange={(e) => setAdminLicenseFiles(Array.from(e.target.files || []))}
+                  />
+                </label>
               </div>
             </div>
 

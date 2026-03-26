@@ -160,10 +160,13 @@ export async function deleteReservation(id, token) {
   if (!res.ok) throw new Error("Delete reservation failed");
 }
 
-export async function createReservation(reservation) {
+export async function createReservation(reservation, token) {
+  const headers = { "Content-Type": "application/json" };
+  if (token) headers.Authorization = `Bearer ${token}`;
+
   const res = await fetch(buildUrl("/api/Reservations"), {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers,
     body: JSON.stringify(reservation),
   });
   if (!res.ok) {
