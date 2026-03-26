@@ -256,7 +256,7 @@ export default function ReservationBar() {
                 type="button"
                 className="h-11 w-full rounded-sm border border-white/30 text-white font-semibold
                    hover:bg-white/10 transition"
-                onClick={goToCars}
+                onClick={() => navigate("/cars")}
               >
                 {t("reservation.viewCollection")}
               </button>
@@ -386,7 +386,7 @@ export default function ReservationBar() {
             type="button"
             className="h-11 w-full rounded-sm border border-white/30 text-white font-semibold
                        hover:bg-white/10 transition"
-            onClick={goToCars}
+            onClick={() => navigate("/cars")}
           >
             {t("reservation.viewCollection")}
           </button>
