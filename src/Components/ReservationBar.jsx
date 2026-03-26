@@ -28,10 +28,10 @@ export default function ReservationBar() {
   const [dropoffLocation, setDropoffLocation] = useState("zyra");
 
   const [pickupDate, setPickupDate] = useState(toDate(now));
-  const pickupTime = "10:00";
+  const [pickupTime, setPickupTime] = useState("10:00");
 
   const [dropoffDate, setDropoffDate] = useState(toDate(tomorrow));
-  const dropoffTime = "10:00";
+  const [dropoffTime, setDropoffTime] = useState("10:00");
 
   function nextDay(dateStr) {
     const d = new Date(dateStr + "T00:00:00");
@@ -199,8 +199,12 @@ export default function ReservationBar() {
               <input
                 type="time"
                 value={pickupTime}
-                readOnly
-                className={input + " opacity-70 cursor-not-allowed"}
+                min="10:00"
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setPickupTime(val < "10:00" ? "10:00" : val);
+                }}
+                className={input}
               />
             </div>
 
@@ -216,8 +220,12 @@ export default function ReservationBar() {
               <input
                 type="time"
                 value={dropoffTime}
-                readOnly
-                className={input + " opacity-70 cursor-not-allowed"}
+                max="10:00"
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setDropoffTime(val > "10:00" ? "10:00" : val);
+                }}
+                className={input}
               />
             </div>
 
@@ -321,8 +329,12 @@ export default function ReservationBar() {
               <input
                 type="time"
                 value={pickupTime}
-                readOnly
-                className={input + " opacity-70 cursor-not-allowed"}
+                min="10:00"
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setPickupTime(val < "10:00" ? "10:00" : val);
+                }}
+                className={input}
               />
             </div>
           </div>
@@ -343,8 +355,12 @@ export default function ReservationBar() {
               <input
                 type="time"
                 value={dropoffTime}
-                readOnly
-                className={input + " opacity-70 cursor-not-allowed"}
+                max="10:00"
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setDropoffTime(val > "10:00" ? "10:00" : val);
+                }}
+                className={input}
               />
             </div>
           </div>
