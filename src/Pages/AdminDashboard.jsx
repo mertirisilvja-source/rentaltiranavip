@@ -134,6 +134,7 @@ function CarsTab({ token }) {
   const [editing, setEditing] = useState(null); // null | "new" | car object
   const [form, setForm] = useState(emptyCar);
   const [saving, setSaving] = useState(false);
+  const [uploadingCarId, setUploadingCarId] = useState(null);
 
   const handle401 = useCallback((e) => {
     if (e.status === 401) {
@@ -216,11 +217,14 @@ function CarsTab({ token }) {
   };
 
   const handleImageUpload = async (car, files) => {
+    setUploadingCarId(car.id);
     try {
       await uploadCarImages(car.id, files, token);
       await load();
     } catch (err) {
-      if (!handle401(err)) alert(err.message);
+      if (!handle401(err)) alert("Image upload failed: " + err.message);
+    } finally {
+      setUploadingCarId(null);
     }
   };
 
@@ -468,13 +472,18 @@ function CarsTab({ token }) {
                   </div>
                 ))}
 
-                <label className="flex h-20 w-28 cursor-pointer items-center justify-center rounded-lg border border-dashed border-white/20 text-sm text-white/40 hover:border-white/40 hover:text-white/60">
-                  + Add
+                <label className={`flex h-20 w-28 items-center justify-center rounded-lg border border-dashed text-sm transition ${
+                  uploadingCarId === car.id
+                    ? "border-[#caa24a]/40 text-[#caa24a]/60 cursor-wait"
+                    : "border-white/20 text-white/40 hover:border-white/40 hover:text-white/60 cursor-pointer"
+                }`}>
+                  {uploadingCarId === car.id ? "Uploading..." : "+ Add"}
                   <input
                     type="file"
                     multiple
-                    accept="image/*"
+                    accept="image/jpeg,image/png,image/webp"
                     className="hidden"
+                    disabled={uploadingCarId === car.id}
                     onChange={(e) => {
                       if (e.target.files?.length) {
                         handleImageUpload(car, Array.from(e.target.files));
