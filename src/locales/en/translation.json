@@ -101,6 +101,7 @@
       "pickReservationTitle": "Choose reservation details",
       "pickReservationSubtitle": "You haven’t selected dates/locations. You can choose them here.",
       "saveReservation": "Save details",
+      "editReservation": "Edit reservation details",
       "differentDropoff": "Different drop-off location",
       "carUnavailable": "This car is already booked for the selected dates. Please choose different dates.",
       "submitting": "Reserving..."

@@ -105,6 +105,7 @@
       "pickReservationTitle": "Scegli i dettagli della prenotazione",
       "pickReservationSubtitle": "Non hai selezionato date/luoghi. Puoi sceglierli qui.",
       "saveReservation": "Salva i dettagli",
+      "editReservation": "Modifica dettagli prenotazione",
       "differentDropoff": "Luogo di riconsegna diverso",
       "carUnavailable": "Questa auto è già prenotata per le date selezionate. Si prega di scegliere date diverse.",
       "submitting": "Prenotazione in corso..."

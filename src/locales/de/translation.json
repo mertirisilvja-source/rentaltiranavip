@@ -105,6 +105,7 @@
       "pickReservationTitle": "Reservierungsdetails auswählen",
       "pickReservationSubtitle": "Du hast keine Daten/Orte ausgewählt. Du kannst sie hier auswählen.",
       "saveReservation": "Details speichern",
+      "editReservation": "Reservierungsdetails bearbeiten",
       "differentDropoff": "Anderer Rückgabeort",
       "carUnavailable": "Dieses Fahrzeug ist für die ausgewählten Daten bereits gebucht. Bitte wählen Sie andere Daten.",
       "submitting": "Wird reserviert..."

@@ -101,6 +101,7 @@
       "pickReservationTitle": "Zgjidh detajet e rezervimit",
       "pickReservationSubtitle": "Nuk i ke zgjedhur datat/lokacionet. Mund t’i zgjedhësh këtu.",
       "saveReservation": "Ruaj detajet",
+      "editReservation": "Ndrysho detajet e rezervimit",
       "differentDropoff": "Lokacion dorëzimi tjetër",
       "carUnavailable": "Kjo makinë është e rezervuar për datat e zgjedhura. Ju lutem zgjidhni data të tjera.",
       "submitting": "Duke rezervuar..."

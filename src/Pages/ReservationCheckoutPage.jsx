@@ -84,6 +84,7 @@ export default function ReservationCheckoutPage() {
   const [dropoffDate, setDropoffDate] = useState(dropoffDateQ || toDate(tomorrow));
   const [dropoffTime, setDropoffTime] = useState(dropoffTimeQ || "10:00");
 
+  const [editingReservation, setEditingReservation] = useState(false);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -238,6 +239,7 @@ export default function ReservationCheckoutPage() {
     next.set("dropoffTime", finalDropoffTime);
 
     setSp(next, { replace: true });
+    setEditingReservation(false);
   };
 
   const onSubmit = async (e) => {
@@ -248,9 +250,9 @@ export default function ReservationCheckoutPage() {
     setSubmitting(true);
 
     try {
-      // Build start/end datetimes
-      const startDateUtc = `${finalPickupDate}T00:00:00Z`;
-      const endDateUtc = `${finalDropoffDate}T00:00:00Z`;
+      // Build start/end datetimes including the selected times
+      const startDateUtc = `${finalPickupDate}T${finalPickupTime || "10:00"}:00Z`;
+      const endDateUtc = `${finalDropoffDate}T${finalDropoffTime || "10:00"}:00Z`;
 
       // Create reservation in the backend (checks availability)
       const reservation = await createReservation({
@@ -446,11 +448,31 @@ export default function ReservationCheckoutPage() {
                 <span className="text-gray-400 dark:text-white/50">→</span>{" "}
                 {finalDropoffDate || "-"} {finalDropoffTime || ""}
               </p>
+
+              {hasReservation && !editingReservation && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    // Sync form state from URL params before editing
+                    if (pickupLocationQ) setPickupLocation(pickupLocationQ);
+                    if (dropoffLocationQ) setDropoffLocation(dropoffLocationQ);
+                    if (pickupDateQ) setPickupDate(pickupDateQ);
+                    if (pickupTimeQ) setPickupTime(pickupTimeQ);
+                    if (dropoffDateQ) setDropoffDate(dropoffDateQ);
+                    if (dropoffTimeQ) setDropoffTime(dropoffTimeQ);
+                    setHasDropoffLocation(pickupLocationQ !== dropoffLocationQ);
+                    setEditingReservation(true);
+                  }}
+                  className="mt-3 w-full rounded-lg border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 px-3 py-2 text-xs font-semibold text-gray-700 dark:text-white/70 hover:bg-gray-200 dark:hover:bg-white/10 transition"
+                >
+                  {t("reservation.checkout.editReservation")}
+                </button>
+              )}
             </div>
           </div>
         </div>
 
-        {!hasReservation && (
+        {(!hasReservation || editingReservation) && (
           <div className="mb-8 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 p-6">
             <h2 className="text-lg font-semibold">
               {t("reservation.checkout.pickReservationTitle")}
