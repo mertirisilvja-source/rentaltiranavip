@@ -28,14 +28,10 @@ export default function ReservationBar() {
   const [dropoffLocation, setDropoffLocation] = useState("zyra");
 
   const [pickupDate, setPickupDate] = useState(toDate(now));
-  const [pickupTime, setPickupTime] = useState(toTime(now));
+  const pickupTime = "10:00";
 
   const [dropoffDate, setDropoffDate] = useState(toDate(tomorrow));
-  const [dropoffTime, setDropoffTime] = useState("10:00");
-
-  useEffect(() => {
-    setDropoffTime("10:00");
-  }, [pickupTime]);
+  const dropoffTime = "10:00";
 
   function nextDay(dateStr) {
     const d = new Date(dateStr + "T00:00:00");
@@ -203,8 +199,8 @@ export default function ReservationBar() {
               <input
                 type="time"
                 value={pickupTime}
-                onChange={(e) => setPickupTime(e.target.value)}
-                className={input}
+                readOnly
+                className={input + " opacity-70 cursor-not-allowed"}
               />
             </div>
 
@@ -220,12 +216,8 @@ export default function ReservationBar() {
               <input
                 type="time"
                 value={dropoffTime}
-                max="10:00"
-                onChange={(e) => {
-                  const val = e.target.value;
-                  setDropoffTime(val > "10:00" ? "10:00" : val);
-                }}
-                className={input}
+                readOnly
+                className={input + " opacity-70 cursor-not-allowed"}
               />
             </div>
 
@@ -329,8 +321,8 @@ export default function ReservationBar() {
               <input
                 type="time"
                 value={pickupTime}
-                onChange={(e) => setPickupTime(e.target.value)}
-                className={input}
+                readOnly
+                className={input + " opacity-70 cursor-not-allowed"}
               />
             </div>
           </div>
@@ -351,12 +343,8 @@ export default function ReservationBar() {
               <input
                 type="time"
                 value={dropoffTime}
-                max="10:00"
-                onChange={(e) => {
-                  const val = e.target.value;
-                  setDropoffTime(val > "10:00" ? "10:00" : val);
-                }}
-                className={input}
+                readOnly
+                className={input + " opacity-70 cursor-not-allowed"}
               />
             </div>
           </div>

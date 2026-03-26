@@ -63,7 +63,7 @@
       "airport": "Aeroporto Internazionale di Tirana (Nënë Tereza)"
     },
 
-    "noteDropoffLimit": "La giornata di noleggio inizia alle ore 10:00. L'orario di riconsegna non può essere successivo alle 10:00. Se hai bisogno di un orario di riconsegna successivo, contatta il nostro staff.",
+    "noteDropoffLimit": "La giornata di noleggio inizia e termina alle ore 10:00. Se hai bisogno di un orario diverso per il ritiro o la riconsegna, contatta il nostro staff.",
     "noteDifferentTime": "Se l'orario di riconsegna non coincide con quello di ritiro, verrà applicato un costo aggiuntivo.",
     "carBooked": "Questa auto è già prenotata per le date selezionate. Si prega di scegliere date diverse.",
     "checking": "Verifica disponibilità...",
@@ -153,7 +153,7 @@
 
       "title3": "Prezzi Trasparenti",
       "desc3": "Prezzi chiari senza costi nascosti. In caso di cambio dell’orario di riconsegna, si applica un costo extra secondo le regole.",
-      "dropoffNote": "La giornata di noleggio inizia alle ore 10:00. L’orario di riconsegna non può essere successivo alle 10:00. Se hai bisogno di un orario di riconsegna successivo, contatta il nostro staff."
+      "dropoffNote": "La giornata di noleggio inizia e termina alle ore 10:00. Se hai bisogno di un orario diverso per il ritiro o la riconsegna, contatta il nostro staff."
     },
 
     "cta": {
